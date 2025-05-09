@@ -1,21 +1,18 @@
 import React, { useContext } from "react";
-import "./Home.css";
+import "./Cart.css";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../cart";
-import { getProducts } from "../../crud";
 
-function Home() {
-  const { setCart } = useContext(CartContext);
-
-  const products = getProducts();
+function Cart() {
+  const { cart } = useContext(CartContext);
 
   return (
-    <div className="home-main-div">
+    <div className="cart-main-div">
       <div className="container">
-        <h1 className="home-heading">This is home</h1>
+        <h1 className="cart-heading">This is cart page</h1>
         <div className="shop-section">
-          {products.map((product) => (
-            <div key={product.id} className="box">
+          {cart.products.map((product, index) => (
+            <div key={`${index}-${product.id}`} className="box">
               <div className="box-content">
                 <h2>{product.name}</h2>
                 <div className="box-img">
@@ -31,17 +28,18 @@ function Home() {
                     See More
                   </NavLink>
                   <button
-                    className="bg-green-500 hover:cursor-pointer"
-                    onClick={() =>
+                    className="bg-red-500"
+                    onClick={() => {
                       setCart((cart) => {
                         const products = [...cart.products];
-                        products.push(product);
+                        // remove single product from products
+                        //
 
                         return { products };
-                      })
-                    }
+                      });
+                    }}
                   >
-                    Add
+                    Remove
                   </button>
                   {/* <p>See more</p> */}
                 </div>
@@ -54,4 +52,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Cart;

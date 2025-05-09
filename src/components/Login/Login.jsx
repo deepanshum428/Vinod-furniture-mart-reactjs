@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,7 +33,12 @@ function Login() {
         let storePassword = curValue.password;
 
         if (storeEmail == email && storePassword == password) {
-          alert("Login successfully");
+          Swal.fire({
+            title: "logged in!",
+            text: "You have logged in successfully",
+            icon: "success",
+            timer: 3000,
+          });
           navigate("/home");
         } else {
           return setMsg("Invalid email or password");
@@ -52,11 +58,12 @@ function Login() {
           <div className="login-right-content">
             <h1 className="login-right-h1">Login</h1>
             <div className="login-input-group-right">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="Email">Email</label>
               <input
-                type="text"
+                type="email"
                 name="email"
-                placeholder="Enter your username"
+                placeholder="Enter your email"
+                required
                 onChange={handleInput}
               />
 
@@ -65,6 +72,7 @@ function Login() {
                 type="password"
                 name="password"
                 placeholder="Enter password"
+                required
                 onChange={handleInput}
               />
               <div className="login-signup-first">

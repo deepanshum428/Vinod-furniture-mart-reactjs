@@ -1,4 +1,5 @@
 import "./App.css";
+import { CART_DEFAULT, CartContext } from "./cart";
 
 import "./index.css";
 
@@ -16,9 +17,13 @@ import Github, { githubInfoLoader } from "./components/Github/github.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import Login from "./components/Login/Login.jsx";
+import { useState } from "react";
+import Cart from "./components/Cart/Cart.jsx";
 
 export default function App() {
   // const [count, setCount] = useState(0);
+  const [cart, setCart] = useState({ ...CART_DEFAULT });
+
   const router = Router(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -31,6 +36,7 @@ export default function App() {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
 
         <Route
           loader={githubInfoLoader}
@@ -50,9 +56,9 @@ export default function App() {
   );
 
   return (
-    <>
+    <CartContext.Provider value={{ cart, setCart }}>
       <h1 className="app-class ">Vinod Furniture Mart Rehti</h1>
       <RouterProvider router={router} />
-    </>
+    </CartContext.Provider>
   );
 }
