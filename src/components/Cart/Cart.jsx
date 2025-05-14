@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import "./Cart.css";
 import { NavLink } from "react-router-dom";
-import { CartContext } from "../../cart";
+import { CartContext, saveCardProducts } from "../../cart";
 
 function Cart() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   return (
     <div className="cart-main-div">
@@ -31,9 +31,26 @@ function Cart() {
                     className="bg-red-500"
                     onClick={() => {
                       setCart((cart) => {
-                        const products = [...cart.products];
+                        // can't use this method because we have duplicate products in cart and it will remove all on clicking on any of duplicate.
+                        // const products = cart.products.filter(
+                        //   (prod) => prod.id !== product.id
+                        // );
+
+                        // 1nd method
+                        // const products = [...cart.products];
                         // remove single product from products
-                        //
+                        // const index = products.findIndex(
+                        //   (prod) => prod.id == product.id
+                        // );
+                        // if (index != -1) {
+                        //   products.splice(index, 1);
+                        // }
+
+                        // 2nd method
+                        const products = [...cart.products];
+                        products.splice(index, 1);
+
+                        saveCardProducts({ products });
 
                         return { products };
                       });

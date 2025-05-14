@@ -27,7 +27,7 @@ export default function App() {
   const router = Router(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
-        <Route path="/home" element={<Home />}></Route>
+        <Route path="/" element={<Home />}></Route>
 
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
@@ -40,7 +40,7 @@ export default function App() {
 
         <Route
           loader={githubInfoLoader}
-          path="github/"
+          path="/github"
           element={<Github />}
         ></Route>
         <Route

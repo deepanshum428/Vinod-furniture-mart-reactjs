@@ -27,7 +27,7 @@ function Github() {
         height={200}
         alt="image"
       />
-      <p className="github-paragraph">Hitesh sir</p>
+      <p className="github-paragraph">Deepanshu Malviya</p>
     </div>
   );
 }
@@ -35,7 +35,7 @@ function Github() {
 export default Github;
 
 export const githubInfoLoader = async () => {
-  const response = await fetch("https://api.github.com/users/hiteshchoudhary");
+  const response = await fetch("https://api.github.com/users/deepanshum428");
 
   return response.json();
 };

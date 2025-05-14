@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Home.css";
 import { NavLink } from "react-router-dom";
-import { CartContext } from "../../cart";
+import { CartContext, saveCardProducts } from "../../cart";
 import { getProducts } from "../../crud";
 
 function Home() {
@@ -36,7 +36,7 @@ function Home() {
                       setCart((cart) => {
                         const products = [...cart.products];
                         products.push(product);
-
+                        saveCardProducts({ products });
                         return { products };
                       })
                     }

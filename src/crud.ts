@@ -43,6 +43,7 @@ const PRODUCTS: Product[] = [
   },
 ];
 
+// JSON.parse(localStorage.getItem("products") || "[]");
 export const getProducts = () => {
   return PRODUCTS;
 };

@@ -60,10 +60,10 @@ function Header() {
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <NavLink
-                  to="/home"
+                  to="/"
                   className={({ isActive }) =>
                     `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "oklch(55.5% 0.163 48.998)" : "text-gray-700"
+                      isActive ? "text-orange-700" : "text-gray-700"
                     } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -103,19 +103,7 @@ function Header() {
                     } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
-                  Github
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/user"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  User
+                  my_Github
                 </NavLink>
               </li>
             </ul>

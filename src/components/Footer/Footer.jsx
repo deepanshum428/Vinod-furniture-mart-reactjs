@@ -22,14 +22,14 @@ function Footer() {
               </h2>
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
-                  <Link to="/" className="hover:underline">
+                  <NavLink to="/" className="hover:underline">
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/about" className="hover:underline">
+                  <NavLink to="/about" className="hover:underline">
                     About
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
