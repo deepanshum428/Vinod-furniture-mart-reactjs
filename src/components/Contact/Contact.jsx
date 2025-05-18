@@ -24,7 +24,11 @@ function Contact() {
     event.preventDefault();
     // debugger;
     if (data.name === "" || data.email === "" || data.contact_number === "") {
-      alert("Please enter detail");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter detail!",
+      });
     } else {
       const getData = JSON.parse(localStorage.getItem("userContact") || "[]");
       console.log(getData);

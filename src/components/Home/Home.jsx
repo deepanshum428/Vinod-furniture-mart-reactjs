@@ -1,54 +1,101 @@
 import React, { useContext } from "react";
 import "./Home.css";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { CartContext, saveCardProducts } from "../../cart";
 import { getProducts } from "../../crud";
+import Swal from "sweetalert2";
 
 function Home() {
-  const { setCart } = useContext(CartContext);
-
+  const { cart, setCart } = useContext(CartContext);
   const products = getProducts();
+  const navigate = useNavigate();
+  const userLogin = localStorage.getItem("user");
+
+  const addToCart = (product) => {
+    // Check if product already exists in cart
+    const isInCart = cart.products.some((item) => item.id === product.id);
+
+    if (isInCart) {
+      alert(`${product.name} is already in your cart!`);
+      return;
+    }
+    if (userLogin) {
+      setCart((prevCart) => {
+        const updatedProducts = [...prevCart.products, product];
+        saveCardProducts({ products: updatedProducts });
+        return { products: updatedProducts };
+      });
+
+      const addButton = document.getElementById(`add-btn-${product.id}`);
+      if (addButton) {
+        addButton.textContent = "Added!";
+        setTimeout(() => {
+          addButton.textContent = "Add";
+        }, 1000);
+      }
+    } else {
+      Swal.fire({
+        title: "Please login first!",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
+      });
+      navigate("/login");
+    }
+
+    // Provide visual feedback
+  };
 
   return (
-    <div className="home-main-div">
-      <div className="container">
-        <h1 className="home-heading">This is home</h1>
-        <div className="shop-section">
-          {products.map((product) => (
-            <div key={product.id} className="box">
-              <div className="box-content">
-                <h2>{product.name}</h2>
-                <div className="box-img">
-                  <img className="productImg" src={product.image} alt="image" />
-                  <NavLink
-                    to="/cart"
-                    className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                        isActive ? "text-orange-700" : "text-blue-800"
-                      } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                    }
-                  >
-                    See More
-                  </NavLink>
-                  <button
-                    className="bg-green-500 hover:cursor-pointer"
-                    onClick={() =>
-                      setCart((cart) => {
-                        const products = [...cart.products];
-                        products.push(product);
-                        saveCardProducts({ products });
-                        return { products };
-                      })
-                    }
-                  >
-                    Add
-                  </button>
-                  {/* <p>See more</p> */}
-                </div>
+    <div className="home-container">
+      <header className="home-header">
+        <h1 className="home-title">Welcome to Our Store</h1>
+        <p className="home-subtitle">Discover our amazing products</p>
+      </header>
+
+      <div className="products-grid">
+        {products.map((product) => (
+          <div key={product.id} className="product-card">
+            <div className="product-image-container">
+              <img
+                className="product-image"
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+              />
+            </div>
+            <div className="product-info">
+              <h2 className="product-name">{product.name}</h2>
+              <div className="product-actions">
+                <NavLink
+                  to={`/product/${product.id}`} // Assuming you have a product detail page
+                  className="details-link"
+                >
+                  View Details
+                </NavLink>
+                <button
+                  id={`add-btn-${product.id}`}
+                  className="add-to-cart-btn"
+                  onClick={() => addToCart(product)}
+                  aria-label={`Add ${product.name} to cart`}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

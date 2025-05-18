@@ -1,115 +1,147 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
-import Login from "../Login/Login";
-import Signup from "../Signup/Signup";
-import "./Header.css";
+import React, { useContext, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import {
+  FaShoppingCart,
+  FaUser,
+  FaSignOutAlt,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { CartContext } from "../../cart";
+import Swal from "sweetalert2";
+import "./Header.css";
 
 function Header() {
   const { cart } = useContext(CartContext);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("currentUser")); // Get user from localStorage
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: "Logout Confirmation",
+      text: "Are you sure you want to logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("currentUser"); // Remove user from localStorage
+        Swal.fire(
+          "Logged Out!",
+          "You have been successfully logged out.",
+          "success"
+        );
+        navigate("/");
+        window.location.reload(); // Refresh to update the UI
+      }
+    });
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
-    <header className="shadow sticky z-50 top-0">
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <Link to="/" className="flex items-center">
+    <header className="header">
+      <div className="header-container">
+        <div className="header-logo-container">
+          <Link to="/" className="header-logo-link">
             <img
-              src="https://img.freepik.com/free-vector/furniture-logo-with-armchair_23-2148656615.jpg?t=st=1743442715~exp=1743446315~hmac=fa6bf2d9feb0ad8c0301f6af5669fb28575ac7b6d2a4d6b445ae52059d6ae0c9&w=826"
-              className="logo mr-3 h-12"
-              alt="Logo"
+              src="https://img.freepik.com/free-vector/furniture-logo-with-armchair_23-2148656615.jpg"
+              className="header-logo"
+              alt="Furniture Store Logo"
             />
+            <span className="header-brand-name">FurniCraft</span>
           </Link>
-          <div className="flex place-content-around lg:order-2">
-            <div className="flex gap-3">
+        </div>
+
+        <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </div>
+
+        <nav
+          className={`header-nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
+        >
+          <ul className="header-nav-list">
+            <li className="header-nav-item">
               <NavLink
-                to="/cart"
+                to="/"
                 className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                    isActive ? "text-orange-700" : "text-gray-700"
-                  } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                  `header-nav-link ${isActive ? "active" : ""}`
                 }
               >
-                cart: {cart.products.length}
+                Home
               </NavLink>
+            </li>
+            <li className="header-nav-item">
               <NavLink
-                to="/login"
+                to="/about"
                 className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                    isActive ? "text-orange-700" : "text-gray-700"
-                  } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                  `header-nav-link ${isActive ? "active" : ""}`
                 }
               >
+                About
+              </NavLink>
+            </li>
+            <li className="header-nav-item">
+              <NavLink
+                to="/products"
+                className={({ isActive }) =>
+                  `header-nav-link ${isActive ? "active" : ""}`
+                }
+              >
+                Products
+              </NavLink>
+            </li>
+            <li className="header-nav-item">
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `header-nav-link ${isActive ? "active" : ""}`
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="header-actions">
+          <NavLink to="/cart" className="header-cart-link">
+            <FaShoppingCart className="cart-icon" />
+            <span className="cart-count">{cart.products.length}</span>
+            <span className="cart-text">Cart</span>
+          </NavLink>
+
+          {user ? (
+            <div className="header-user-dropdown">
+              <button className="header-user-button">
+                <FaUser className="user-icon" />
+                <span className="user-name">{user.name}</span>
+              </button>
+              <div className="header-dropdown-menu">
+                <button onClick={handleLogout} className="header-dropdown-item">
+                  <FaSignOutAlt className="logout-icon" />
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="header-auth-buttons">
+              <NavLink to="/login" className="header-login-button">
                 Login
               </NavLink>
-              <NavLink
-                to="/signup"
-                className={({ isActive }) =>
-                  `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                    isActive ? "text-orange-700" : "text-gray-700"
-                  } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                }
-              >
-                Signup
+              <NavLink to="/signup" className="header-signup-button">
+                Sign Up
               </NavLink>
             </div>
-          </div>
-          <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-            id="mobile-menu-2"
-          >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Contact
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/github"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  my_Github
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+          )}
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

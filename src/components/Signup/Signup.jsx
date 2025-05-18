@@ -1,100 +1,227 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { FaUser, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
 
 function Signup() {
-  const userDetail = {
+  const initialUserDetail = {
     name: "",
     email: "",
     password: "",
   };
 
-  const [data, setData] = useState({ ...userDetail });
+  const [data, setData] = useState({ ...initialUserDetail });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleInput = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.name);
-    const name = event.target.name;
-    const value = event.target.value;
+  const validateForm = () => {
+    const newErrors = {};
 
-    setData({ ...data, [name]: value });
+    if (!data.name.trim()) {
+      newErrors.name = "Full name is required";
+    } else if (data.name.length < 3) {
+      newErrors.name = "Name must be at least 3 characters";
+    }
+
+    if (!data.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!data.password) {
+      newErrors.password = "Password is required";
+    } else if (data.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleInput = (event) => {
+    const { name, value } = event.target;
+    setData((prev) => ({ ...prev, [name]: value }));
+
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (data.name == "" || data.email == "" || data.password == "") {
-      alert("please enter detail");
-    } else {
-      const getData = JSON.parse(localStorage.getItem("user") || "[]");
-      console.log(getData);
+    setIsSubmitting(true);
 
-      const arr = Array.isArray(getData) ? getData : [getData];
-      arr.push(data);
+    if (!validateForm()) {
+      setIsSubmitting(false);
+      return;
+    }
 
-      localStorage.setItem("user", JSON.stringify(arr));
-      event.currentTarget.reset();
-      setData({ ...userDetail });
-      alert("signup successfully");
-      // navigate("/login");
+    try {
+      const existingUsers = JSON.parse(localStorage.getItem("user") || "[]");
+      const emailExists = existingUsers.some(
+        (user) => user.email === data.email
+      );
+
+      if (emailExists) {
+        Swal.fire({
+          title: "Email Already Registered",
+          text: "This email address is already in use. Please use a different email or login instead.",
+          icon: "warning",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#3085d6",
+        });
+        return;
+      }
+
+      const updatedUsers = [...existingUsers, data];
+      localStorage.setItem("user", JSON.stringify(updatedUsers));
+
+      await Swal.fire({
+        title: "Registration Successful!",
+        html: `
+          <div style="text-align: center;">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+              <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p style="margin-top: 1rem;">Your account has been created successfully.</p>
+            <p>You can now log in to access your account.</p>
+          </div>
+        `,
+        showConfirmButton: true,
+        confirmButtonText: "Continue to Login",
+        confirmButtonColor: "#4CAF50",
+        timer: 5000,
+        timerProgressBar: true,
+        allowOutsideClick: false,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error);
+      Swal.fire({
+        title: "Registration Failed",
+        text: "An error occurred during registration. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="main-Signup">
+    <div className="signup-page">
       <div className="signup-container">
-        <div className="signup-left-content">
-          <h1 className="signup-left-h1">Signup page</h1>
-          <p>Start your journey with us</p>
-        </div>
-        <form action="" className="signup-form" onSubmit={handleSubmit}>
-          <div className="signup-right-content">
-            <h1 className="signup-right-h1">Signup</h1>
-            <div className="signup-input-group-right">
-              {/* <div className="signup-input-group-right"> */}
-
-              <label htmlFor="Full Name">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter full name"
-                onChange={handleInput}
-              />
-
-              <label htmlFor="Email">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                onChange={handleInput}
-              />
-
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Create password"
-                onChange={handleInput}
-              />
-              <div className="signup-already-login">
-                <p>Already have an account ? </p>
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                      isActive ? "text-orange-700" : "text-blue-800"
-                    } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  Login
-                </NavLink>
-              </div>
-              <button type="submit" className="signup-button">
-                Signup
-              </button>
+        <div className="signup-hero">
+          <div className="signup-hero-content">
+            <h1>Join Our Community</h1>
+            <p>Create your account to get started</p>
+            <div className="signup-benefits">
+              <p>
+                <span>✓</span> Access exclusive content
+              </p>
+              <p>
+                <span>✓</span> Save your preferences
+              </p>
+              <p>
+                <span>✓</span> Faster checkout
+              </p>
             </div>
           </div>
-        </form>
+        </div>
+
+        <div className="signup-form-container">
+          <div className="signup-form-header">
+            <h2>Create Account</h2>
+            <p>Please fill in your details</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="signup-form">
+            <div className="form-group">
+              <label htmlFor="name">
+                <FaUser className="input-icon" />
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="John Doe"
+                value={data.name}
+                onChange={handleInput}
+                className={errors.name ? "error" : ""}
+              />
+              {errors.name && (
+                <span className="error-message">{errors.name}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">
+                <FaEnvelope className="input-icon" />
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="john@example.com"
+                value={data.email}
+                onChange={handleInput}
+                className={errors.email ? "error" : ""}
+              />
+              {errors.email && (
+                <span className="error-message">{errors.email}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">
+                <FaLock className="input-icon" />
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="At least 6 characters"
+                value={data.password}
+                onChange={handleInput}
+                className={errors.password ? "error" : ""}
+              />
+              {errors.password && (
+                <span className="error-message">{errors.password}</span>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="signup-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Creating Account..." : "Create Account"}
+              <FaArrowRight className="button-icon" />
+            </button>
+
+            <div className="signup-login-link">
+              Already have an account?{" "}
+              <NavLink to="/login" className="login-link">
+                Sign in
+              </NavLink>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
