@@ -13,7 +13,6 @@ import Layout from "./Layout.jsx";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";
 import User from "./components/User/User.jsx";
-import Github, { githubInfoLoader } from "./components/Github/github.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import Login from "./components/Login/Login.jsx";
@@ -38,11 +37,6 @@ export default function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
 
-        <Route
-          loader={githubInfoLoader}
-          path="/github"
-          element={<Github />}
-        ></Route>
         <Route
           path="*"
           element={
