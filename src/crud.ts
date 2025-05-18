@@ -1,45 +1,53 @@
 import { Product } from "./cart";
+import bedImg from "../src/assets/bed.jpg";
+import computerTableImg from "../src/assets/computerTable.jpg";
+import diningTableImg from "../src/assets/diningTable.jpg";
+import dressingtableImg from "../src/assets/dressing table.jpg";
+import simpleCentreTableImg from "../src/assets/simpleCentreTable.jpg";
+import SofaSetImg from "../src/assets/SofaSet.jpg";
+import woodenChairImg from "../src/assets/woodenChair.jpg";
+import woodenDoorImg from "../src/assets/woodenDoor.jpg";
 
 const PRODUCTS: Product[] = [
   {
     id: 1,
     name: "Wooden bed",
-    image: "./src/assets/bed.jpg",
+    image: bedImg,
   },
   {
     id: 2,
     name: "computer Table",
-    image: "./src/assets/computerTable.jpg",
+    image: computerTableImg,
   },
   {
     id: 3,
     name: "Dining Table",
-    image: "./src/assets/diningTable.jpg",
+    image: diningTableImg,
   },
   {
     id: 4,
     name: "Dressing table",
-    image: "./src/assets/dressing table.jpg",
+    image: dressingtableImg,
   },
   {
     id: 5,
     name: "Centre Table",
-    image: "./src/assets/simpleCentreTable.jpg",
+    image: simpleCentreTableImg,
   },
   {
     id: 6,
     name: "Sofa Set",
-    image: "./src/assets/SofaSet.jpg",
+    image: SofaSetImg,
   },
   {
     id: 7,
     name: "Chair",
-    image: "./src/assets/woodenChair.jpg",
+    image: woodenChairImg,
   },
   {
     id: 8,
     name: "Door",
-    image: "./src/assets/woodenDoor.jpg",
+    image: woodenDoorImg,
   },
 ];
 
