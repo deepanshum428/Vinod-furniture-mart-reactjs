@@ -51,11 +51,11 @@ function Header() {
         <div className="header-logo-container">
           <Link to="/" className="header-logo-link">
             <img
-              src="https://img.freepik.com/free-vector/furniture-logo-with-armchair_23-2148656615.jpg"
+              src="/img/freepik-modern-yellow-armchair-logo-20250519124448GUJ2.png"
               className="header-logo"
               alt="Furniture Store Logo"
             />
-            <span className="header-brand-name">FurniCraft</span>
+            <span className="header-brand-name">vinod Furniture Mart</span>
           </Link>
         </div>
 

@@ -1,81 +1,77 @@
-.contact-main-div {
-  background-color: #deb887;
-  /* height: 50vh; */
-  padding: 10px;
-  height: 80vh;
+.contact-section {
+  padding: 4rem 1rem;
+  background-color: #f8f9fa;
+  text-align: center;
 }
 
 .contact-container {
-  height: auto;
-  width: 30%;
-  max-width: 50%;
-  margin: 1rem;
-  padding: 1rem;
-  background-color: #c19b6c08;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.contact-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.contact-form {
   display: flex;
   flex-direction: column;
-  /* outline: 1px solid red; */
-  margin-inline: auto;
-  margin-top: 5rem;
-  align-items: center;
-  border-radius: 4px;
-  box-shadow: 10px 10px 10px 4px #e4ae6c08;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.68);
-  border-bottom: 1px solid #ffffff20;
-  border-right: 1px solid #ffffff20;
+  gap: 1rem;
+  text-align: left;
 }
 
-.contact-container .heading {
-  color: whitesmoke;
+.contact-form label {
+  font-weight: 500;
+  color: var(--text-color);
 }
 
-.contact-container h1 {
-  display: flex;
-  justify-content: center;
-  font-size: larger;
-  font-weight: bold;
+.contact-form input {
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  transition: var(--transition);
+  font-size: 1rem;
 }
 
-.contact-container form {
-  display: contents;
+.contact-form input:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
-.contact-container > form > label,
-input,
-button {
-  border-radius: 4px;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: whitesmoke;
-}
-
-.contact-container label {
-  background-color: #855e42;
-  text-align: center;
-  height: 40px;
-  margin-top: 15px;
-  color: aliceblue;
-}
-
-.contact-container input {
-  background-color: whitesmoke;
-  text-align: center;
-  border: 2px solid whitesmoke;
-  height: 30px;
-  margin-top: 5px;
-  color: black;
-}
-
-.contact-container button {
-  background-color: rgb(79, 187, 79);
-  height: 35px;
-  margin-top: 15px;
-  border-radius: 50px;
-  width: 30%;
-}
-.contact-container button:hover {
+.contact-submit-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  transition: var(--transition);
+}
+
+.contact-submit-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 1.5rem;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
 }

@@ -8,7 +8,7 @@ function About() {
       <section className="about-hero">
         <div className="hero-content">
           <h1>About Vinod Furniture Mart</h1>
-          <p>Crafting Quality, Comfort & Style Since 1995</p>
+          <p>Crafting Quality, Comfort & Style Since 2010</p>
         </div>
       </section>
 
@@ -16,7 +16,7 @@ function About() {
         <div className="about-content">
           <div className="about-image">
             <img
-              src="https://img.freepik.com/free-vector/furniture-logo-with-armchair_23-2148656615.jpg"
+              src="/img/freepik-modern-yellow-armchair-logo-20250519124448GUJ2.png"
               alt="Vinod Furniture Mart logo"
               className="logo-img"
             />

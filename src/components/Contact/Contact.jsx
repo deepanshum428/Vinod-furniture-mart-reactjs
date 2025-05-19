@@ -1,81 +1,94 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import "./Contact.css";
 
 function Contact() {
-  const userDetail = {
+  const initialState = {
     name: "",
     email: "",
     contact_number: "",
   };
 
-  const [data, setData] = useState({ ...userDetail });
+  const [data, setData] = useState(initialState);
 
-  const handleInput = (event) => {
-    // console.log(event.currentTarget.name);
-    // console.log(event.currentTarget.value);
-    const name = event.currentTarget.name;
-    const value = event.currentTarget.value;
-
+  const handleInput = (e) => {
+    const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    console.log(data);
-    event.preventDefault();
-    // debugger;
-    if (data.name === "" || data.email === "" || data.contact_number === "") {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { name, email, contact_number } = data;
+
+    if (!name || !email || !contact_number) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please enter detail!",
+        title: "Missing Information",
+        text: "Please fill in all fields before submitting.",
       });
-    } else {
-      const getData = JSON.parse(localStorage.getItem("userContact") || "[]");
-      console.log(getData);
-      const array = Array.isArray(getData) ? getData : [getData];
-      array.push(data);
-
-      localStorage.setItem("userContact", JSON.stringify(array));
-      event.currentTarget.reset();
-      setData({ ...userDetail });
+      return;
     }
+
+    const existing = JSON.parse(localStorage.getItem("userContact") || "[]");
+    const updatedData = Array.isArray(existing) ? [...existing, data] : [data];
+
+    localStorage.setItem("userContact", JSON.stringify(updatedData));
+
+    Swal.fire({
+      icon: "success",
+      title: "Thank You!",
+      text: "Your contact details have been submitted.",
+    });
+
+    e.target.reset();
+    setData(initialState);
   };
 
   return (
-    <div className="contact-main-div">
+    <section className="contact-section">
       <div className="contact-container">
-        <h1 className="heading">Contact us</h1>
-        <form action="">
+        <h2 className="contact-title">Contact Us</h2>
+        <p className="contact-subtitle">
+          Have questions or feedback? We'd love to hear from you.
+        </p>
+        <form onSubmit={handleSubmit} className="contact-form">
           <label htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
+            placeholder="Enter your name"
             onChange={handleInput}
-            placeholder="Enter name"
+            value={data.name}
+            required
           />
 
           <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
+            placeholder="Enter your email"
             onChange={handleInput}
-            placeholder="Enter email"
+            value={data.email}
+            required
           />
 
-          <label htmlFor="number">Contact number</label>
+          <label htmlFor="contact_number">Contact Number</label>
           <input
-            type="number"
+            type="tel"
             name="contact_number"
+            placeholder="Enter your phone number"
             onChange={handleInput}
-            placeholder="Enter contact number"
+            value={data.contact_number}
+            required
           />
 
-          <button onClick={handleSubmit} type="submit">
+          <button type="submit" className="contact-submit-btn">
             Submit
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 
