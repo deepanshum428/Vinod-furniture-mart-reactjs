@@ -2,69 +2,113 @@ import React, { useContext } from "react";
 import "./Cart.css";
 import { NavLink } from "react-router-dom";
 import { CartContext, saveCardProducts } from "../../cart";
+import Swal from "sweetalert2";
 
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
 
+  const removeFromCart = (index) => {
+    Swal.fire({
+      title: "Remove item?",
+      text: "Are you sure you want to remove this item from your cart?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, remove it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setCart((cart) => {
+          const products = [...cart.products];
+          products.splice(index, 1);
+          saveCardProducts({ products });
+          return { products };
+        });
+
+        Swal.fire(
+          "Removed!",
+          "The item has been removed from your cart.",
+          "success"
+        );
+      }
+    });
+  };
+
+  const calculateTotal = () => {
+    return cart.products.reduce(
+      (total, product) => total + (product.price || 0),
+      0
+    );
+  };
+
   return (
-    <div className="cart-main-div">
-      <div className="container">
-        <h1 className="cart-heading">This is cart page</h1>
-        <div className="shop-section">
+    <div className="cart-container">
+      <header className="cart-header">
+        <h1 className="cart-title">Your Shopping Cart</h1>
+        <p className="cart-subtitle">
+          {cart.products.length} items in your cart
+        </p>
+      </header>
+
+      {cart.products.length === 0 ? (
+        <div className="empty-cart">
+          <h2>Your cart is empty</h2>
+          <NavLink to="/" className="continue-shopping">
+            Continue Shopping
+          </NavLink>
+        </div>
+      ) : (
+        <div className="cart-items">
           {cart.products.map((product, index) => (
-            <div key={`${index}-${product.id}`} className="box">
-              <div className="box-content">
-                <h2>{product.name}</h2>
-                <div className="box-img">
-                  <img className="productImg" src={product.image} alt="image" />
+            <div key={`${index}-${product.id}`} className="cart-item">
+              <div className="item-image-container">
+                <img
+                  className="item-image"
+                  src={product.image}
+                  alt={product.name}
+                />
+              </div>
+              <div className="item-details">
+                <h2 className="item-name">{product.name}</h2>
+                {product.price && (
+                  <p className="item-price">${product.price.toFixed(2)}</p>
+                )}
+                <div className="item-actions">
                   <NavLink
-                    to="/cart"
-                    className={({ isActive }) =>
-                      `block py-2 pr-4 pl-3 duration-200 border-b border-gray-100 ${
-                        isActive ? "text-orange-700" : "text-blue-800"
-                      } lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                    }
+                    to={`/product/${product.id}`}
+                    className="details-link"
                   >
-                    See More
+                    View Details
                   </NavLink>
                   <button
-                    className="bg-red-500"
-                    onClick={() => {
-                      setCart((cart) => {
-                        // can't use this method because we have duplicate products in cart and it will remove all on clicking on any of duplicate.
-                        // const products = cart.products.filter(
-                        //   (prod) => prod.id !== product.id
-                        // );
-
-                        // 1nd method
-                        // const products = [...cart.products];
-                        // remove single product from products
-                        // const index = products.findIndex(
-                        //   (prod) => prod.id == product.id
-                        // );
-                        // if (index != -1) {
-                        //   products.splice(index, 1);
-                        // }
-
-                        // 2nd method
-                        const products = [...cart.products];
-                        products.splice(index, 1);
-
-                        saveCardProducts({ products });
-
-                        return { products };
-                      });
-                    }}
+                    className="remove-btn"
+                    onClick={() => removeFromCart(index)}
                   >
                     Remove
                   </button>
-                  {/* <p>See more</p> */}
                 </div>
               </div>
             </div>
           ))}
+
+          <div className="cart-summary">
+            <h3 className="summary-title">Order Summary</h3>
+            <div className="summary-row">
+              <span>Subtotal</span>
+              <span>${calculateTotal().toFixed(2)}</span>
+            </div>
+            <div className="summary-row">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+            <div className="summary-row total">
+              <span>Total</span>
+              <span>${calculateTotal().toFixed(2)}</span>
+            </div>
+            <button className="checkout-btn">Proceed to Checkout</button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
