@@ -10,6 +10,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import "./Footer.css";
+import logoImg from "../../assets/logo.png";
 
 function Footer() {
   return (
@@ -18,11 +19,7 @@ function Footer() {
         {/* Brand & About */}
         <div className="footer-section footer-brand">
           <Link to="/" className="footer-logo-link">
-            <img
-              src="/img/freepik-modern-yellow-armchair-logo-20250519124448GUJ2.png"
-              alt="FurniCraft Logo"
-              className="footer-logo"
-            />
+            <img src={logoImg} alt="FurniCraft Logo" className="footer-logo" />
             <h2 className="footer-title">Vinod Furniture Mart</h2>
           </Link>
           <p className="footer-description">

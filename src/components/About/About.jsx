@@ -1,6 +1,7 @@
 import React from "react";
 import "./About.css";
 import { FaLeaf, FaRulerCombined, FaMedal, FaSmile } from "react-icons/fa";
+import logoImg from "../../assets/logo.png";
 
 function About() {
   return (
@@ -16,7 +17,7 @@ function About() {
         <div className="about-content">
           <div className="about-image">
             <img
-              src="/img/freepik-modern-yellow-armchair-logo-20250519124448GUJ2.png"
+              src={logoImg}
               alt="Vinod Furniture Mart logo"
               className="logo-img"
             />

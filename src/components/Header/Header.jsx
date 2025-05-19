@@ -10,6 +10,7 @@ import {
 import { CartContext } from "../../cart";
 import Swal from "sweetalert2";
 import "./Header.css";
+import logoImg from "../../assets/logo.png";
 
 function Header() {
   const { cart } = useContext(CartContext);
@@ -51,7 +52,7 @@ function Header() {
         <div className="header-logo-container">
           <Link to="/" className="header-logo-link">
             <img
-              src="/img/freepik-modern-yellow-armchair-logo-20250519124448GUJ2.png"
+              src={logoImg}
               className="header-logo"
               alt="Furniture Store Logo"
             />
