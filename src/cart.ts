@@ -4,21 +4,26 @@ export type Product = {
   name: string;
   id: number;
   image: string;
+  price: number;
+  quantity: number;
+  description: string;
 };
-export type CartValue = typeof CART_DEFAULT;
+
+export type CartValue = {
+  products: Product[];
+};
 
 const cartDataStr = localStorage.getItem("cart-products");
 
-// localStorage.setItem("cart-products", products)
-
 export const CART_DEFAULT = cartDataStr
-  ? (JSON.parse(cartDataStr) as Product[])
+  ? (JSON.parse(cartDataStr) as CartValue)
   : { products: [] };
+
 export const CartContext = createContext({
-  cart: { ...CART_DEFAULT },
+  cart: CART_DEFAULT,
   setCart: (cart: CartValue) => {},
 });
 
-export const saveCardProducts = (cart) => {
+export const saveCardProducts = (cart: CartValue) => {
   localStorage.setItem("cart-products", JSON.stringify(cart));
 };

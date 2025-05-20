@@ -34,9 +34,21 @@ function Cart() {
     });
   };
 
+  const updateQuantity = (index, newQuantity) => {
+    if (newQuantity < 1) return;
+
+    setCart((cart) => {
+      const products = [...cart.products];
+      products[index] = { ...products[index], quantity: newQuantity };
+      saveCardProducts({ products });
+      return { products };
+    });
+  };
+
   const calculateTotal = () => {
     return cart.products.reduce(
-      (total, product) => total + (product.price || 0),
+      (total, product) =>
+        total + (product.price || 0) * (product.quantity || 0),
       0
     );
   };
@@ -46,7 +58,8 @@ function Cart() {
       <header className="cart-header">
         <h1 className="cart-title">Your Shopping Cart</h1>
         <p className="cart-subtitle">
-          {cart.products.length} items in your cart
+          {cart.products.length} {cart.products.length === 1 ? "item" : "items"}{" "}
+          in your cart
         </p>
       </header>
 
@@ -70,9 +83,29 @@ function Cart() {
               </div>
               <div className="item-details">
                 <h2 className="item-name">{product.name}</h2>
-                {product.price && (
-                  <p className="item-price">${product.price.toFixed(2)}</p>
-                )}
+                <p className="item-description">{product.description}</p>
+                <p className="item-price">${product.price.toFixed(2)}</p>
+
+                <div className="quantity-controls">
+                  <button
+                    className="quantity-btn"
+                    onClick={() => updateQuantity(index, product.quantity - 1)}
+                  >
+                    -
+                  </button>
+                  <span className="quantity">{product.quantity}</span>
+                  <button
+                    className="quantity-btn"
+                    onClick={() => updateQuantity(index, product.quantity + 1)}
+                  >
+                    +
+                  </button>
+                </div>
+
+                <p className="item-total">
+                  Total: ${(product.price * product.quantity).toFixed(2)}
+                </p>
+
                 <div className="item-actions">
                   <NavLink
                     to={`/product/${product.id}`}
@@ -94,7 +127,11 @@ function Cart() {
           <div className="cart-summary">
             <h3 className="summary-title">Order Summary</h3>
             <div className="summary-row">
-              <span>Subtotal</span>
+              <span>
+                Subtotal (
+                {cart.products.reduce((acc, item) => acc + item.quantity, 0)}{" "}
+                items)
+              </span>
               <span>${calculateTotal().toFixed(2)}</span>
             </div>
             <div className="summary-row">

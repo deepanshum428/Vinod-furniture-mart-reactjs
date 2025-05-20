@@ -56,7 +56,7 @@ function Header() {
               className="header-logo"
               alt="Furniture Store Logo"
             />
-            <span className="header-brand-name">vinod Furniture Mart</span>
+            <span className="header-brand-name">Vinod Furniture Mart</span>
           </Link>
         </div>
 
