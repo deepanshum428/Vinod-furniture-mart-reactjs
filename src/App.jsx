@@ -1,8 +1,6 @@
 import "./App.css";
 import { CART_DEFAULT } from "./cart";
-
 import "./index.css";
-
 import {
   createBrowserRouter as Router,
   createRoutesFromElements,

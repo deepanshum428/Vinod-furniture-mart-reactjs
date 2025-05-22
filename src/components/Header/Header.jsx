@@ -12,9 +12,11 @@ import "./Header.css";
 import logoImg from "../../assets/logo.png";
 import { MyContext } from "../../context";
 import { saveUser } from "../../user";
+import { EMPTY_CART, saveCardProducts } from "../../cart";
 
 function Header() {
-  const { cart, loggedInUser, setLoggedInUser } = useContext(MyContext);
+  const { cart, loggedInUser, setCart, setLoggedInUser } =
+    useContext(MyContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -35,8 +37,10 @@ function Header() {
           "You have been successfully logged out.",
           "success"
         );
+        saveCardProducts({ ...EMPTY_CART });
         setLoggedInUser(null);
         saveUser(null);
+        setCart({ ...EMPTY_CART });
         navigate("/");
       }
     });

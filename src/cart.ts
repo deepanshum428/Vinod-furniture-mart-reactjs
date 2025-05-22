@@ -13,9 +13,11 @@ export type CartValue = {
 
 const cartDataStr = localStorage.getItem("cart-products");
 
+export const EMPTY_CART = { products: [] };
+
 export const CART_DEFAULT = cartDataStr
   ? (JSON.parse(cartDataStr) as CartValue)
-  : { products: [] };
+  : { ...EMPTY_CART };
 
 export const saveCardProducts = (cart: CartValue) => {
   localStorage.setItem("cart-products", JSON.stringify(cart));
