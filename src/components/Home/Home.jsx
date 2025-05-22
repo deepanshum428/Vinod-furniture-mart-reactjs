@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import "./Home.css";
 import { useNavigate, NavLink } from "react-router-dom";
-import { CartContext, saveCardProducts } from "../../cart";
+import { saveCardProducts } from "../../cart";
 import { getProducts } from "../../crud";
 import Swal from "sweetalert2";
+import { MyContext } from "../../context";
 
 function Home() {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(MyContext);
   const products = getProducts();
   const navigate = useNavigate();
   const userLogin = localStorage.getItem("user");

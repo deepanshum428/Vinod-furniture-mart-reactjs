@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import "./Cart.css";
 import { NavLink } from "react-router-dom";
-import { CartContext, saveCardProducts } from "../../cart";
+import { saveCardProducts } from "../../cart";
 import Swal from "sweetalert2";
+import { MyContext } from "../../context";
 
 function Cart() {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(MyContext);
 
   const removeFromCart = (index) => {
     Swal.fire({

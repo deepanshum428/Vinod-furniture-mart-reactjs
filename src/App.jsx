@@ -1,5 +1,5 @@
 import "./App.css";
-import { CART_DEFAULT, CartContext } from "./cart";
+import { CART_DEFAULT } from "./cart";
 
 import "./index.css";
 
@@ -18,10 +18,13 @@ import Signup from "./components/Signup/Signup.jsx";
 import Login from "./components/Login/Login.jsx";
 import { useState } from "react";
 import Cart from "./components/Cart/Cart.jsx";
+import { LOGGEDIN_USER } from "./user.js";
+import { MyContext } from "./context.js";
 
 export default function App() {
   // const [count, setCount] = useState(0);
   const [cart, setCart] = useState({ ...CART_DEFAULT });
+  const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
 
   const router = Router(
     createRoutesFromElements(
@@ -50,9 +53,11 @@ export default function App() {
   );
 
   return (
-    <CartContext.Provider value={{ cart, setCart }}>
+    <MyContext.Provider
+      value={{ cart, setCart, loggedInUser, setLoggedInUser }}
+    >
       <h1 className="app-class ">Vinod Furniture Mart Rehti</h1>
       <RouterProvider router={router} />
-    </CartContext.Provider>
+    </MyContext.Provider>
   );
 }

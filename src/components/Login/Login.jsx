@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
+import { saveUser } from "../../user";
+import { MyContext } from "../../context";
 
 function Login() {
+  const { setLoggedInUser } = useContext(MyContext);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -82,6 +86,8 @@ function Login() {
           },
         });
         navigate("/");
+        setLoggedInUser(user);
+        saveUser(user);
       } else {
         throw new Error("Invalid credentials");
       }

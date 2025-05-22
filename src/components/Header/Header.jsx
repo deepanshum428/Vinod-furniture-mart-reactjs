@@ -7,16 +7,16 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
-import { CartContext } from "../../cart";
 import Swal from "sweetalert2";
 import "./Header.css";
 import logoImg from "../../assets/logo.png";
+import { MyContext } from "../../context";
+import { saveUser } from "../../user";
 
 function Header() {
-  const { cart } = useContext(CartContext);
+  const { cart, loggedInUser, setLoggedInUser } = useContext(MyContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("currentUser")); // Get user from localStorage
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -30,14 +30,14 @@ function Header() {
       confirmButtonText: "Yes, logout",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("currentUser"); // Remove user from localStorage
         Swal.fire(
           "Logged Out!",
           "You have been successfully logged out.",
           "success"
         );
+        setLoggedInUser(null);
+        saveUser(null);
         navigate("/");
-        window.location.reload(); // Refresh to update the UI
       }
     });
   };
@@ -118,11 +118,11 @@ function Header() {
             <span className="cart-text">Cart</span>
           </NavLink>
 
-          {user ? (
+          {loggedInUser ? (
             <div className="header-user-dropdown">
               <button className="header-user-button">
                 <FaUser className="user-icon" />
-                <span className="user-name">{user.name}</span>
+                <span className="user-name">{loggedInUser.name}</span>
               </button>
               <div className="header-dropdown-menu">
                 <button onClick={handleLogout} className="header-dropdown-item">
