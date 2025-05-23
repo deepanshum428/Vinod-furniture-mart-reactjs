@@ -1,3 +1,5 @@
+import { LOGGEDIN_USER } from "./user";
+
 export type Product = {
   name: string;
   id: number;
@@ -11,14 +13,19 @@ export type CartValue = {
   products: Product[];
 };
 
-const cartDataStr = localStorage.getItem("cart-products");
+const cartKey = (email = "") => `cart-products-${email || ""}`;
+
+export const getCartValue = (email = "") => {
+  const cartDataStr = localStorage.getItem(cartKey(email));
+  return cartDataStr
+    ? (JSON.parse(cartDataStr) as CartValue)
+    : { ...EMPTY_CART };
+};
 
 export const EMPTY_CART = { products: [] };
 
-export const CART_DEFAULT = cartDataStr
-  ? (JSON.parse(cartDataStr) as CartValue)
-  : { ...EMPTY_CART };
+export const CART_DEFAULT = getCartValue();
 
 export const saveCardProducts = (cart: CartValue) => {
-  localStorage.setItem("cart-products", JSON.stringify(cart));
+  localStorage.setItem(cartKey(), JSON.stringify(cart));
 };

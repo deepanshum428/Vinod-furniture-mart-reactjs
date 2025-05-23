@@ -54,7 +54,7 @@ function Login() {
     }
 
     try {
-      const users = JSON.parse(localStorage.getItem("user")) || [];
+      const users = JSON.parse(localStorage.getItem("users")) || [];
       const user = users.find(
         (u) => u.email === formData.email && u.password === formData.password
       );

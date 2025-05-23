@@ -11,19 +11,19 @@ function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { cart, setCart } = useContext(MyContext);
-  const userLogin = localStorage.getItem("user");
+  const userLogin = localStorage.getItem("users");
 
   const products = getProducts();
   const product = products.find((p) => p.id === Number(id));
+
+  // Check if product already exists in cart
+  const isInCart = cart.products.some((item) => item.id === product.id);
 
   if (!product) {
     return <div>Product not found</div>;
   }
 
   const addToCart = () => {
-    // Check if product already exists in cart
-    const isInCart = cart.products.some((item) => item.id === product.id);
-
     if (isInCart) {
       alert(`${product.name} is already in your cart!`);
       return;
@@ -82,9 +82,21 @@ function ProductDetail() {
           <p className="product-detail-description">{product.description}</p>
 
           <div className="product-detail-actions">
-            <button onClick={addToCart} className="product-detail-add-to-cart">
-              Add to Cart
-            </button>
+            {isInCart ? (
+              <button
+                onClick={() => navigate("/cart")}
+                className="product-detail-add-to-cart"
+              >
+                View Product in Cart
+              </button>
+            ) : (
+              <button
+                onClick={addToCart}
+                className="product-detail-add-to-cart"
+              >
+                Add to Cart
+              </button>
+            )}
             <button
               onClick={() => navigate(-1)}
               className="product-detail-back"

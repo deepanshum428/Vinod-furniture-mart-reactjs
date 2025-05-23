@@ -40,7 +40,7 @@ function Header() {
         setLoggedInUser(null);
         saveUser(null);
         setCart({ ...EMPTY_CART });
-        saveCardProducts({ ...EMPTY_CART });
+        // saveCardProducts({ ...EMPTY_CART });
         navigate("/");
       }
     });

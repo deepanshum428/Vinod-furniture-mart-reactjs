@@ -7,10 +7,9 @@ import Swal from "sweetalert2";
 import { MyContext } from "../../context";
 
 function Home() {
-  const { cart, setCart } = useContext(MyContext);
+  const { cart, setCart, loggedInUser } = useContext(MyContext);
   const products = getProducts();
   const navigate = useNavigate();
-  const userLogin = localStorage.getItem("user");
 
   const addToCart = (product) => {
     // Check if product already exists in cart
@@ -20,7 +19,7 @@ function Home() {
       alert(`${product.name} is already in your cart!`);
       return;
     }
-    if (userLogin) {
+    if (loggedInUser) {
       setCart((prevCart) => {
         const updatedProducts = [...prevCart.products, product];
         saveCardProducts({ products: updatedProducts });

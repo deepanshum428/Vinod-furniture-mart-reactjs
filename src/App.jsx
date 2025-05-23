@@ -1,5 +1,5 @@
 import "./App.css";
-import { CART_DEFAULT } from "./cart";
+import { CART_DEFAULT, EMPTY_CART, getCartValue } from "./cart";
 import "./index.css";
 import {
   createBrowserRouter as Router,
@@ -14,7 +14,7 @@ import User from "./components/User/User.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Signup from "./components/Signup/Signup.jsx";
 import Login from "./components/Login/Login.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cart from "./components/Cart/Cart.jsx";
 import { LOGGEDIN_USER } from "./user.js";
 import { MyContext } from "./context.js";
@@ -22,8 +22,12 @@ import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 
 export default function App() {
   // const [count, setCount] = useState(0);
-  const [cart, setCart] = useState({ ...CART_DEFAULT });
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
+  const [cart, setCart] = useState({ ...EMPTY_CART });
+
+  useEffect(() => {
+    setCart(getCartValue(loggedInUser?.email));
+  }, [loggedInUser]);
 
   const router = Router(
     createRoutesFromElements(

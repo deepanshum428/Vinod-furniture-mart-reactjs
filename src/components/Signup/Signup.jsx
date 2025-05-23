@@ -61,7 +61,7 @@ function Signup() {
     }
 
     try {
-      const existingUsers = JSON.parse(localStorage.getItem("user") || "[]");
+      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
       const emailExists = existingUsers.some(
         (user) => user.email === data.email
       );
@@ -78,7 +78,7 @@ function Signup() {
       }
 
       const updatedUsers = [...existingUsers, data];
-      localStorage.setItem("user", JSON.stringify(updatedUsers));
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
 
       await Swal.fire({
         title: "Registration Successful!",
