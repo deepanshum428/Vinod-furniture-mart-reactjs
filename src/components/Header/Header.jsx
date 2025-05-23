@@ -37,10 +37,10 @@ function Header() {
           "You have been successfully logged out.",
           "success"
         );
-        saveCardProducts({ ...EMPTY_CART });
         setLoggedInUser(null);
         saveUser(null);
         setCart({ ...EMPTY_CART });
+        saveCardProducts({ ...EMPTY_CART });
         navigate("/");
       }
     });

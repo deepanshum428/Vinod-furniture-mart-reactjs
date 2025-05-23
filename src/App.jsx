@@ -18,6 +18,7 @@ import { useState } from "react";
 import Cart from "./components/Cart/Cart.jsx";
 import { LOGGEDIN_USER } from "./user.js";
 import { MyContext } from "./context.js";
+import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 
 export default function App() {
   // const [count, setCount] = useState(0);
@@ -28,7 +29,7 @@ export default function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />}></Route>
-
+        <Route path="/product/:id" element={<ProductDetail />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/user" element={<User />}>
