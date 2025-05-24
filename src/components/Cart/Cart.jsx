@@ -104,7 +104,7 @@ function Cart() {
                 </div>
 
                 <p className="item-total">
-                  Total: ${(product.price * product.quantity).toFixed(2)}
+                  Total: ₹{(product.price * product.quantity).toFixed(2)}
                 </p>
 
                 <div className="item-actions">
