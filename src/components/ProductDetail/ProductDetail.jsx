@@ -10,7 +10,7 @@ import "./ProductDetail.css";
 function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { cart, setCart } = useContext(MyContext);
+  const { cart, setCart, loggedInUser } = useContext(MyContext);
   const userLogin = localStorage.getItem("users");
 
   const products = getProducts();
@@ -32,7 +32,7 @@ function ProductDetail() {
     if (userLogin) {
       setCart((prevCart) => {
         const updatedProducts = [...prevCart.products, product];
-        saveCardProducts({ products: updatedProducts });
+        saveCardProducts({ products: updatedProducts }, loggedInUser?.email);
         return { products: updatedProducts };
       });
 
@@ -78,7 +78,7 @@ function ProductDetail() {
 
         <div className="product-detail-info">
           <h1 className="product-detail-name">{product.name}</h1>
-          <p className="product-detail-price">${product.price.toFixed(2)}</p>
+          <p className="product-detail-price">₹{product.price.toFixed(2)}</p>
           <p className="product-detail-description">{product.description}</p>
 
           <div className="product-detail-actions">

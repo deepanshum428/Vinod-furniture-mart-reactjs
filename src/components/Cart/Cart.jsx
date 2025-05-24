@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { MyContext } from "../../context";
 
 function Cart() {
-  const { cart, setCart } = useContext(MyContext);
+  const { cart, setCart, loggedInUser } = useContext(MyContext);
 
   const removeFromCart = (index) => {
     Swal.fire({
@@ -22,7 +22,7 @@ function Cart() {
         setCart((cart) => {
           const products = [...cart.products];
           products.splice(index, 1);
-          saveCardProducts({ products });
+          saveCardProducts({ products }, loggedInUser?.email);
           return { products };
         });
 
@@ -41,7 +41,7 @@ function Cart() {
     setCart((cart) => {
       const products = [...cart.products];
       products[index] = { ...products[index], quantity: newQuantity };
-      saveCardProducts({ products });
+      saveCardProducts({ products }, loggedInUser?.email);
       return { products };
     });
   };
@@ -85,7 +85,7 @@ function Cart() {
               <div className="item-details">
                 <h2 className="item-name">{product.name}</h2>
                 <p className="item-description">{product.description}</p>
-                <p className="item-price">${product.price.toFixed(2)}</p>
+                <p className="item-price">₹{product.price.toFixed(2)}</p>
 
                 <div className="quantity-controls">
                   <button

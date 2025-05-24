@@ -12,7 +12,7 @@ import "./Header.css";
 import logoImg from "../../assets/logo.png";
 import { MyContext } from "../../context";
 import { saveUser } from "../../user";
-import { EMPTY_CART, saveCardProducts } from "../../cart";
+import { EMPTY_CART } from "../../cart";
 
 function Header() {
   const { cart, loggedInUser, setCart, setLoggedInUser } =
@@ -40,7 +40,6 @@ function Header() {
         setLoggedInUser(null);
         saveUser(null);
         setCart({ ...EMPTY_CART });
-        // saveCardProducts({ ...EMPTY_CART });
         navigate("/");
       }
     });

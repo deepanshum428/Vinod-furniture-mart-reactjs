@@ -22,7 +22,7 @@ function Home() {
     if (loggedInUser) {
       setCart((prevCart) => {
         const updatedProducts = [...prevCart.products, product];
-        saveCardProducts({ products: updatedProducts });
+        saveCardProducts({ products: updatedProducts }, loggedInUser?.email);
         return { products: updatedProducts };
       });
 

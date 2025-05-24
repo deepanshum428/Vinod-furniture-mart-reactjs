@@ -26,6 +26,6 @@ export const EMPTY_CART = { products: [] };
 
 export const CART_DEFAULT = getCartValue();
 
-export const saveCardProducts = (cart: CartValue) => {
-  localStorage.setItem(cartKey(), JSON.stringify(cart));
+export const saveCardProducts = (cart: CartValue, email) => {
+  localStorage.setItem(cartKey(email), JSON.stringify(cart));
 };
