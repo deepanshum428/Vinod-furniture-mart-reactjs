@@ -17,7 +17,7 @@ const cartKey = (email = "") => `cart-products-${email || ""}`;
 
 export const getCartValue = (email = "") => {
   const cartDataStr = localStorage.getItem(cartKey(email));
-  return cartDataStr
+  return cartDataStr && email
     ? (JSON.parse(cartDataStr) as CartValue)
     : { ...EMPTY_CART };
 };
