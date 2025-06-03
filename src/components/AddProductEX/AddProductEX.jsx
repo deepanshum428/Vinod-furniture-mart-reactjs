@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import {MyContext} from
+import { MyContext } from "../../context";
 
 const AddProductEX = () => {
-
-  const {loggedInUser} = useContext(MyContext);
-
+  const { loggedInUser } = useContext(MyContextntext);
 
   return (
     <div className="add-productEX-container">

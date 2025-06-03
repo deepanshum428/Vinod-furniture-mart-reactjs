@@ -29,7 +29,7 @@ function ProductDetail() {
       return;
     }
 
-    if (userLogin) {
+    if (loggedInUser) {
       setCart((prevCart) => {
         const updatedProducts = [...prevCart.products, product];
         saveCardProducts({ products: updatedProducts }, loggedInUser?.email);
