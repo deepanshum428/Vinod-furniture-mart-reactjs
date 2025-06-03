@@ -79,3 +79,25 @@ const PRODUCTS: Product[] = [
 export const getProducts = () => {
   return PRODUCTS;
 };
+
+export const addProduct = async (product) => {
+  // In a real app, this would be an API call to your backend
+  // For now, we'll simulate it with localStorage
+
+  // Get existing products
+  const existingProducts = JSON.parse(localStorage.getItem("products") || "[]");
+
+  // Create new product with ID
+  const newProduct = {
+    ...product,
+    id: Date.now().toString(), // Simple ID generation
+  };
+
+  // Add to array
+  const updatedProducts = [...existingProducts, newProduct];
+
+  // Save back to localStorage
+  localStorage.setItem("products", JSON.stringify(updatedProducts));
+
+  return newProduct;
+};

@@ -19,6 +19,7 @@ import Cart from "./components/Cart/Cart.jsx";
 import { LOGGEDIN_USER } from "./user.js";
 import { MyContext } from "./context.js";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
+import AddProduct from "./components/AddProduct/AddProduct.jsx";
 
 export default function App() {
   // const [count, setCount] = useState(0);
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/product/:id" element={<ProductDetail />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/add-product" element={<AddProduct />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/user" element={<User />}>
           <Route path=":userId" element={<User />}></Route>

@@ -93,12 +93,12 @@ function Header() {
             </li>
             <li className="header-nav-item">
               <NavLink
-                to="/products"
+                to="/add-product"
                 className={({ isActive }) =>
                   `header-nav-link ${isActive ? "active" : ""}`
                 }
               >
-                Products
+                Add Product
               </NavLink>
             </li>
             <li className="header-nav-item">
