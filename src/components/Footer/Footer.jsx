@@ -59,7 +59,7 @@ function Footer() {
               <FaPhone /> Will update soon
             </li>
             <li>
-              <FaEnvelope /> support@vinodfurnituremart.com
+              <FaEnvelope /> vinodfurnituremartsupp27@gmail.com
             </li>
           </ul>
         </div>
