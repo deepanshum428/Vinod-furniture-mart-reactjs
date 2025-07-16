@@ -104,9 +104,9 @@ function Header() {
             <li className="header-nav-item">
               <NavLink
                 to="/contact"
-                className={({ isActive }) =>
-                  `header-nav-link ${isActive ? "active" : ""}`
-                }
+                className={({ isActive }) => {
+                  `header-nav-link ${isActive ? "active" : ""}`;
+                }}
               >
                 Contact
               </NavLink>

@@ -30,7 +30,7 @@ function Home() {
       if (addButton) {
         addButton.textContent = "Added!";
         setTimeout(() => {
-          addButton.textContent = "Add";
+          addButton.textContent = "Already added";
         }, 1000);
       }
     } else {
@@ -90,7 +90,9 @@ function Home() {
                   onClick={() => addToCart(product)}
                   aria-label={`Add ${product.name} to cart`}
                 >
-                  Add to Cart
+                  {cart.products.some((item) => item.id === product.id)
+                    ? "Already added"
+                    : "Add to cart"}
                 </button>
               </div>
             </div>

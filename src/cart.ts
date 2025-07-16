@@ -29,3 +29,4 @@ export const CART_DEFAULT = getCartValue();
 export const saveCardProducts = (cart: CartValue, email) => {
   localStorage.setItem(cartKey(email), JSON.stringify(cart));
 };
+

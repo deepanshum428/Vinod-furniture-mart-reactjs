@@ -6,5 +6,5 @@ export const MyContext = createContext({
   cart: CART_DEFAULT,
   setCart: (cart: CartValue) => {},
   loggedInUser: LOGGEDIN_USER,
-  setLoggedInUser: (user) => {},
+  setLoggedInUser: (user) => {}
 });
