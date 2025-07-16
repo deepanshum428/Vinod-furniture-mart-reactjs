@@ -3,7 +3,7 @@ import { Product } from "./cart";
 const PRODUCTS: Product[] = [
   {
     id: 1,
-    name: "Wooden bed",
+    name: "Wooden Bed",
     image: "/img/bed.jpg",
     price: 19999.99,
     quantity: 1,
