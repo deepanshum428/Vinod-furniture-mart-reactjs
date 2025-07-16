@@ -27,7 +27,7 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 4,
-    name: "Dressing table",
+    name: "Dressing Table",
     image: "/img/dressing table.jpg",
     price: 9999.99,
     quantity: 1,
@@ -67,7 +67,7 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 9,
-    name: "Baby cradle palna",
+    name: "Baby Cradle Palna",
     image: "/img/babyCradlePalna.jpg",
     price: 2599.99,
     quantity: 1,
