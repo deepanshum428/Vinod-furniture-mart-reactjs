@@ -1,4 +1,7 @@
 import React from "react";
+import bed from "../../assets/bed1.jpg";
+import dainingTable1 from "../../assets/dainingTable1.avif";
+import dainingTable2 from "../../assets/dainingTable2.jpg";
 
 const bestsellers = [
   {
@@ -6,7 +9,7 @@ const bestsellers = [
     title: "Serenity Timber Loveseat",
     price: "$1299",
     originalPrice: "$1499",
-    img: "/images/sofa1.png", // Replace with your actual paths
+    img: bed,
     colors: ["#d6d1cb", "#8e8e8e"],
   },
   {
@@ -14,7 +17,7 @@ const bestsellers = [
     title: "Block Nomad Sofa - 3 piece",
     price: "$1299",
     originalPrice: "$1499",
-    img: "/images/sofa2.png",
+    img: dainingTable1,
     colors: ["#2e2d2a", "#d6d1cb", "#a0ada1"],
   },
   {
@@ -22,7 +25,7 @@ const bestsellers = [
     title: "Nomad Sofa - Loveseat",
     price: "$1299",
     originalPrice: "$1499",
-    img: "/images/sofa3.png",
+    img: dainingTable2,
     colors: ["#2e2d2a", "#d6d1cb", "#a0ada1"],
   },
 ];

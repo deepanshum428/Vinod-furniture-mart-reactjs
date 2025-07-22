@@ -1,5 +1,5 @@
 import React from "react";
-import mainSofa from "../../assets/hero-sofa-small.jpg"; // Your main sofa image
+import mainSofa from "../../assets/mainSofa.avif"; // Your main sofa image
 import thumb1 from "../../assets/heroSectionS1.avif";
 import thumb2 from "../../assets/heroSectionS2.avif";
 import thumb3 from "../../assets/heroSectionS3.avif";
@@ -9,11 +9,12 @@ const HeroSection = () => {
     <section
       className="relative w-full min-h-[650px] flex flex-col justify-center items-start bg-[#f2efe9] overflow-hidden"
       style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1653971858474-4f2dfa7f4dc1?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D}`,
-        // backgroundSize: "cover",
-        // backgroundPosition: "center",
-        // width: "100%",
-        // height: "100%",
+        backgroundImage: `url(${mainSofa})`,
+        width: "100%",
+        height: "100%",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* Main Content */}
@@ -34,11 +35,7 @@ const HeroSection = () => {
       {/* Thumbnails Gallery (bottom right) */}
       <div className="absolute right-10 bottom-10 flex gap-4 bg-[#e9e6dece] rounded-md p-2 shadow-lg z-30">
         <img
-          src={
-            new URL(
-              "https://images.unsplash.com/photo-1653971858474-4f2dfa7f4dc1?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            )
-          }
+          src={mainSofa}
           alt="Product 1"
           className="w-38 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
         />

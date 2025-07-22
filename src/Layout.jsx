@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import HeroSection from "./Components/HeroSection/HeroSection.jsx";
-import BestSellerSection from "./Components/BestSellerSection/BestSellerSEction.jsx";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import HeroSection from "./components/HeroSection/HeroSection.jsx";
+import BestSellerSection from "./components/BestSellerSection/BestSellerSection.jsx";
 
 const Layout = (props) => {
   return (
