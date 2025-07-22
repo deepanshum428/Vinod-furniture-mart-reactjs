@@ -1,152 +1,184 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import { IoMdArrowDropdown } from "react-icons/io";
-import logo from "../../assets/Vinod Furniture Mart.svg";
+import { Search, ShoppingCart, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <header
-      className="fixed top-0 left-0 w-[calc(100%-80px)] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm"
-      style={{ padding: "0", margin: "20px 40px 0px 40px" }}
+  const NavLink = ({ to, children, onClick, className = "" }) => (
+    <a
+      href={to}
+      onClick={onClick}
+      className={`text-[#a65a32] hover:text-[#8b4513] transition-colors ${className}`}
     >
-      <div
-        className="max-w-full mx-auto flex items-center justify-between px-12 py-2"
-        style={{ minHeight: "50px" }}
+      {children}
+    </a>
+  );
+
+  return (
+    <>
+      <header
+        className="fixed top-0 left-0 w-[calc(100%-80px)] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm"
+        style={{ padding: "0", margin: "20px 40px 0px 40px" }}
       >
-        {/* Left Nav */}
-        <nav className="hidden md:flex space-x-8 text-base text-[#a65a32] font-normal w-full flex-1 justify-left">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] font-semibold underline"
-                : "hover:text-[#a65a32]"
-            }
-          >
-            Home
-          </NavLink>
-          <div className="relative group">
-            <NavLink
-              to="/products"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-[#a65a32] font-semibold inline-flex items-center underline"
-                  : "inline-flex items-center hover:text-[#a65a32]"
-              }
+        <div
+          className="max-w-full mx-auto flex items-center justify-between px-12 py-2"
+          style={{ minHeight: "50px" }}
+        >
+          {/* Desktop Header */}
+          <div className="hidden md:flex items-center justify-between w-full">
+            {/* Left Nav */}
+            <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1">
+              <NavLink to="/" className="font-semibold">
+                Home
+              </NavLink>
+              <NavLink to="/products">Products</NavLink>
+              <NavLink to="/our-story">Our Story</NavLink>
+              <NavLink to="/contact">Contact Us</NavLink>
+            </nav>
+
+            {/* Logo Center */}
+            <div className="mx-8 w-full flex-1 text-center">
+              <a href="/" className="inline-block">
+                <img
+                  src="/src/assets/Vinod Furniture Mart.svg"
+                  alt="Vinod Furniture Logo"
+                  className="h-10 mx-auto"
+                  style={{ maxHeight: "40px", objectFit: "contain" }}
+                />
+              </a>
+            </div>
+
+            {/* Right Search and Cart */}
+            <div className="flex items-center space-x-4 w-full flex-1 justify-end">
+              <div className="relative w-full flex-1 max-w-64">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="border border-gray-300 w-full px-5 py-1 text-base focus:outline-none focus:border-[#a65a32] bg-[#f8f5f2] placeholder:text-[#a65a32]"
+                />
+                <Search className="absolute top-2.5 right-4 text-[#a65a32] text-base w-4 h-4" />
+              </div>
+              <a href="/cart">
+                <ShoppingCart className="text-[#a65a32] text-2xl cursor-pointer w-6 h-6" />
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            {/* Mobile Menu Button */}
+            <button
+              className="text-[#a65a32] p-1"
+              onClick={() => setMenuOpen(true)}
             >
-              Product <IoMdArrowDropdown className="ml-1" />
-            </NavLink>
+              <Menu className="w-6 h-6" />
+            </button>
+
+            {/* Logo */}
+            <a href="/" className="flex-1 text-center">
+              <img
+                src="/src/assets/Vinod Furniture Mart.svg"
+                alt="Vinod Furniture Logo"
+                className="h-8 mx-auto"
+                style={{ maxHeight: "32px", objectFit: "contain" }}
+              />
+            </a>
+
+            {/* Cart */}
+            <a href="/cart">
+              <ShoppingCart className="text-[#a65a32] w-6 h-6" />
+            </a>
           </div>
-          <NavLink
-            to="/our-story"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] font-semibold underline"
-                : "hover:text-[#a65a32]"
-            }
-          >
-            Our Story
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] font-semibold underline"
-                : "hover:text-[#a65a32]"
-            }
-          >
-            Contact Us
-          </NavLink>
-        </nav>
-
-        {/* Logo Center */}
-        <div className="mx-8 w-full flex-1 text-center">
-          <Link to="/" className="inline-block">
-            <img
-              src={logo}
-              alt="Vinod Furniture Logo"
-              className="h-10 mx-auto"
-              style={{ maxHeight: "40px", objectFit: "contain" }}
-            />
-          </Link>
         </div>
+      </header>
 
-        {/* Right Search and Cart */}
-        <div className="flex items-center space-x-4 w-full flex-1 justify-end">
-          <div className="relative w-full flex-1 max-w-64">
-            <input
-              type="text"
-              placeholder="Search"
-              className="border border-gray-300 w-full px-5 py-1 text-base focus:outline-none focus:border-[#a65a32] bg-[#f8f5f2] placeholder:text-[#a65a32]"
-            />
-            <FaSearch className="absolute top-2.5 right-4 text-[#a65a32] text-base" />
-          </div>
-          <Link to="/cart">
-            <FaShoppingCart className="text-[#a65a32] text-2xl cursor-pointer" />
-          </Link>
-          {/* Hamburger for mobile */}
-          <button
-            className="md:hidden text-2xl text-[#a65a32]"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Nav */}
+      {/* Mobile Sidebar Overlay */}
       {menuOpen && (
-        <div className="md:hidden mt-4 space-y-3 px-4 text-base text-[#a65a32] bg-[#f8f5f2] pb-4">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] block font-semibold underline"
-                : "block hover:text-[#a65a32]"
-            }
+        <div className="fixed inset-0 z-[60] md:hidden">
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50"
             onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/products"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] block font-semibold underline"
-                : "block hover:text-[#a65a32]"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            Product
-          </NavLink>
-          <NavLink
-            to="/our-story"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] block font-semibold underline"
-                : "block hover:text-[#a65a32]"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            Our Story
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#a65a32] block font-semibold underline"
-                : "block hover:text-[#a65a32]"
-            }
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact Us
-          </NavLink>
+          ></div>
+
+          {/* Sidebar */}
+          <div className="relative w-80 max-w-[85vw] h-full bg-[#f8f5f2] shadow-xl">
+            <div className="p-6">
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between mb-8">
+                <img
+                  src="/src/assets/Vinod Furniture Mart.svg"
+                  alt="Vinod Furniture Logo"
+                  className="h-8"
+                  style={{ maxHeight: "32px", objectFit: "contain" }}
+                />
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[#a65a32] p-1"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Search Bar */}
+              <div className="mb-8">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    className="border border-gray-300 w-full px-4 py-3 pr-10 text-sm focus:outline-none focus:border-[#a65a32] bg-white rounded"
+                  />
+                  <Search className="absolute top-3.5 right-3 text-[#a65a32] w-4 h-4" />
+                </div>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="space-y-1">
+                <NavLink
+                  to="/"
+                  className="block py-3 px-4 rounded-lg hover:bg-white font-semibold text-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  to="/products"
+                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Products
+                </NavLink>
+                <NavLink
+                  to="/our-story"
+                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Our Story
+                </NavLink>
+                <NavLink
+                  to="/contact"
+                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contact Us
+                </NavLink>
+              </nav>
+
+              {/* Cart Link */}
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <NavLink
+                  to="/cart"
+                  className="flex items-center py-3 px-4 rounded-lg hover:bg-white text-lg"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <ShoppingCart className="w-5 h-5 mr-3" />
+                  Shopping Cart
+                </NavLink>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 
