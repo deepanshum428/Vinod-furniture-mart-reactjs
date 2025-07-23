@@ -29,7 +29,7 @@ const HeroSection = () => {
       </div>
 
       {/* Thumbnails Gallery (bottom right) */}
-      <div className="absolute right-6 bottom-6 md:flex hidden gap-3 bg-[#e9e6dece] rounded-md p-2 shadow-lg z-30">
+      <div className="absolute right-6 bottom-6 md:flex hidden gap-3 bg-[#e9e6de2d] rounded-md p-2 shadow-lg z-30">
         <img
           src={mainSofa}
           alt="Product 1"
