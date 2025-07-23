@@ -19,33 +19,25 @@ const Header = () => {
             <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1 cursor-pointer">
               <NavLink
                 to="/"
-                className={({ isActive }) =>
-                  `hover:underline ${isActive ? "font-bold underline" : ""}`
-                }
+                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
               >
                 Home
               </NavLink>
               <NavLink
                 to="/products"
-                className={({ isActive }) =>
-                  `hover:underline ${isActive ? "font-bold underline" : ""}`
-                }
+                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
               >
                 Products
               </NavLink>
               <NavLink
                 to="/our-story"
-                className={({ isActive }) =>
-                  `hover:underline ${isActive ? "font-bold underline" : ""}`
-                }
+                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
               >
                 Our Story
               </NavLink>
               <NavLink
                 to="/contact"
-                className={({ isActive }) =>
-                  `hover:underline ${isActive ? "font-bold underline" : ""}`
-                }
+                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
               >
                 Contact Us
               </NavLink>
