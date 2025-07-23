@@ -1,26 +1,14 @@
 import React, { useState } from "react";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../../assets/Vinod Furniture Mart.svg";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const NavLink = ({ to, children, onClick, className = "" }) => (
-    <a
-      href={to}
-      onClick={onClick}
-      className={`text-[#a65a32] hover:text-[#8b4513] transition-colors ${className}`}
-    >
-      {children}
-    </a>
-  );
-
   return (
     <>
-      <header
-        className="fixed top-0 left-0 w-[calc(100%-80px)] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm"
-        style={{ padding: "0", margin: "20px 40px 0px 40px" }}
-      >
+      <header className="fixed top-0 left-0 w-[calc(100%-80px)] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm mx-10 mt-5">
         <div
           className="max-w-full mx-auto flex items-center justify-between px-12 py-2"
           style={{ minHeight: "50px" }}
@@ -28,25 +16,50 @@ const Header = () => {
           {/* Desktop Header */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* Left Nav */}
-            <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1">
-              <NavLink to="/" className="font-semibold">
+            <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1 cursor-pointer">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `hover:underline ${isActive ? "font-bold underline" : ""}`
+                }
+              >
                 Home
               </NavLink>
-              <NavLink to="/products">Products</NavLink>
-              <NavLink to="/our-story">Our Story</NavLink>
-              <NavLink to="/contact">Contact Us</NavLink>
+              <NavLink
+                to="/products"
+                className={({ isActive }) =>
+                  `hover:underline ${isActive ? "font-bold underline" : ""}`
+                }
+              >
+                Products
+              </NavLink>
+              <NavLink
+                to="/our-story"
+                className={({ isActive }) =>
+                  `hover:underline ${isActive ? "font-bold underline" : ""}`
+                }
+              >
+                Our Story
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `hover:underline ${isActive ? "font-bold underline" : ""}`
+                }
+              >
+                Contact Us
+              </NavLink>
             </nav>
 
             {/* Logo Center */}
             <div className="mx-8 w-full flex-1 text-center">
-              <a href="/" className="inline-block">
+              <NavLink to="/" className="inline-block">
                 <img
                   src={logo}
                   alt="Vinod Furniture Logo"
-                  className="h-10 mx-auto"
-                  style={{ maxHeight: "40px", objectFit: "contain" }}
+                  className="h-10 mx-auto object-contain"
                 />
-              </a>
+              </NavLink>
             </div>
 
             {/* Right Search and Cart */}
@@ -55,19 +68,18 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="border border-gray-300 w-full px-5 py-1 text-base focus:outline-none focus:border-[#a65a32] bg-[#f8f5f2] placeholder:text-[#a65a32]"
+                  className="border border-gray-300 w-full px-5 py-1 text-base text-[#a65a32] focus:outline-none focus:border-[#a65a32] bg-[#f8f5f2] placeholder:text-[#a65a32]"
                 />
-                <Search className="absolute top-2.5 right-4 text-[#a65a32] text-base w-4 h-4" />
+                <Search className="absolute top-2.5 right-4 text-[#a65a32] w-4 h-4 cursor-pointer" />
               </div>
-              <a href="/cart">
-                <ShoppingCart className="text-[#a65a32] text-2xl cursor-pointer w-6 h-6" />
-              </a>
+              <NavLink to="/cart">
+                <ShoppingCart className="text-[#a65a32] w-6 h-6 cursor-pointer" />
+              </NavLink>
             </div>
           </div>
 
           {/* Mobile Header */}
           <div className="md:hidden flex items-center justify-between w-full">
-            {/* Mobile Menu Button */}
             <button
               className="text-[#a65a32] p-1"
               onClick={() => setMenuOpen(true)}
@@ -75,20 +87,17 @@ const Header = () => {
               <Menu className="w-6 h-6" />
             </button>
 
-            {/* Logo */}
-            <a href="/" className="flex-1 text-center">
+            <NavLink to="/" className="flex-1 text-center">
               <img
-                src="/src/assets/Vinod Furniture Mart.svg"
+                src={logo}
                 alt="Vinod Furniture Logo"
-                className="h-8 mx-auto"
-                style={{ maxHeight: "32px", objectFit: "contain" }}
+                className="h-8 mx-auto object-contain"
               />
-            </a>
+            </NavLink>
 
-            {/* Cart */}
-            <a href="/cart">
+            <NavLink to="/cart">
               <ShoppingCart className="text-[#a65a32] w-6 h-6" />
-            </a>
+            </NavLink>
           </div>
         </div>
       </header>
@@ -107,10 +116,9 @@ const Header = () => {
               {/* Sidebar Header */}
               <div className="flex items-center justify-between mb-8">
                 <img
-                  src="/src/assets/Vinod Furniture Mart.svg"
+                  src={logo}
                   alt="Vinod Furniture Logo"
-                  className="h-8"
-                  style={{ maxHeight: "32px", objectFit: "contain" }}
+                  className="h-8 object-contain"
                 />
                 <button
                   onClick={() => setMenuOpen(false)}
@@ -134,34 +142,26 @@ const Header = () => {
 
               {/* Navigation Links */}
               <nav className="space-y-1">
-                <NavLink
-                  to="/"
-                  className="block py-3 px-4 rounded-lg hover:bg-white font-semibold text-lg"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  to="/products"
-                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Products
-                </NavLink>
-                <NavLink
-                  to="/our-story"
-                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Our Story
-                </NavLink>
-                <NavLink
-                  to="/contact"
-                  className="block py-3 px-4 rounded-lg hover:bg-white text-lg"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contact Us
-                </NavLink>
+                {["/", "/products", "/our-story", "/contact"].map(
+                  (path, idx) => {
+                    const names = [
+                      "Home",
+                      "Products",
+                      "Our Story",
+                      "Contact Us",
+                    ];
+                    return (
+                      <NavLink
+                        key={path}
+                        to={path}
+                        className="block py-3 px-4 rounded-lg hover:bg-white font-medium text-lg"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {names[idx]}
+                      </NavLink>
+                    );
+                  }
+                )}
               </nav>
 
               {/* Cart Link */}
