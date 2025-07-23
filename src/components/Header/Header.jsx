@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
+import logo from "../../assets/Vinod Furniture Mart.svg";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,7 +41,7 @@ const Header = () => {
             <div className="mx-8 w-full flex-1 text-center">
               <a href="/" className="inline-block">
                 <img
-                  src="/src/assets/Vinod Furniture Mart.svg"
+                  src={logo}
                   alt="Vinod Furniture Logo"
                   className="h-10 mx-auto"
                   style={{ maxHeight: "40px", objectFit: "contain" }}
