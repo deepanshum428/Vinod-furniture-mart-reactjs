@@ -60,9 +60,9 @@ export default function CategoriesSection() {
   const activeItem = sofaData[activeIndex];
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-stretch justify-between p-6 bg-[#f8f6f4]">
+    <div className="w-full flex flex-col items-center md:flex-row  p-6 bg-[#f8f6f4] justify-around">
       {/* Left Section */}
-      <div className="flex-1 max-w-xl">
+      <div className="flex-1 max-w-xl ">
         <h2 className="text-2xl font-semibold mb-6 text-[#2e1b0e]">
           Our categories
         </h2>
@@ -107,7 +107,7 @@ export default function CategoriesSection() {
       </div>
 
       {/* Right Image */}
-      <div className="flex-1 w-full h-cover mt-8 md:mt-0 max-w-md h-full">
+      <div className="flex-1 w-full h-[300px] h-cover mt-8 md:mt-0 max-w-md ">
         {
           <img
             src={activeItem.image}
