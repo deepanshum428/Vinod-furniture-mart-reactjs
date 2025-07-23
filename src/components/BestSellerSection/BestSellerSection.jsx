@@ -2,11 +2,13 @@ import React from "react";
 import bed from "../../assets/bed1.jpg";
 import dainingTable1 from "../../assets/dainingTable1.avif";
 import dainingTable2 from "../../assets/dainingTable2.jpg";
+import NotFound from "../NotFound/NotFound";
+import { NavLink } from "react-router-dom";
 
 const bestsellers = [
   {
     id: 1,
-    title: "Serenity Timber Loveseat",
+    title: "Wooden Bed",
     price: "$1299",
     originalPrice: "$1499",
     img: bed,
@@ -14,7 +16,7 @@ const bestsellers = [
   },
   {
     id: 2,
-    title: "Block Nomad Sofa - 3 piece",
+    title: "Dining Set",
     price: "$1299",
     originalPrice: "$1499",
     img: dainingTable1,
@@ -22,7 +24,7 @@ const bestsellers = [
   },
   {
     id: 3,
-    title: "Nomad Sofa - Loveseat",
+    title: "Dining Set",
     price: "$1299",
     originalPrice: "$1499",
     img: dainingTable2,
@@ -35,9 +37,11 @@ const BestSellerSection = () => {
     <section className="bg-[#f8f6f4] py-14 px-6 sm:px-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">Shop our bestsellers</h2>
-        <button className="text-[#8c6b4d] font-medium hover:underline">
-          View all Product
-        </button>
+        <NavLink to="/NotFound">
+          <button className="text-[#8c6b4d] font-medium hover:underline cursor-pointer">
+            View all Product
+          </button>
+        </NavLink>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -55,28 +59,35 @@ const BestSellerSection = () => {
                     style={{ backgroundColor: color }}
                   ></span>
                 ))}
-                <span className="text-xs text-gray-500">+ More options</span>
+                <NavLink to={"/NotFound"}>
+                  <span className="text-xs text-gray-500 cursor-pointer hover:underline">
+                    + More options
+                  </span>
+                </NavLink>
               </div>
             </div>
 
             <img
               src={item.img}
               alt={item.title}
-              className="w-full h-40 object-contain mb-4"
+              className="w-full h-80 object-cover p-4 mb-4"
             />
 
-            <div className="px-1">
+            <div className="px-1 pl-4">
               <h3 className="text-sm font-semibold">{item.title}</h3>
-              <div className="flex items-center gap-2 text-sm mt-1">
-                <span className="line-through text-gray-400">
-                  {item.originalPrice}
-                </span>
-                <span className="text-[#b44b2a] font-medium">{item.price}</span>
+              <div className="flex items-center justify-between text-sm mt-1">
+                <div className="gap-2">
+                  <span className="line-through text-gray-400">
+                    {item.originalPrice}
+                  </span>
+                  <span className="text-[#b44b2a] font-medium">
+                    {item.price}
+                  </span>
+                </div>
+                <div className=" flex justify-items-end cursor-pointer ">
+                  <span className="text-xl text-gray-400">{">"}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="mt-3 flex justify-end pr-2">
-              <span className="text-xl text-gray-400">{">"}</span>
             </div>
           </div>
         ))}
