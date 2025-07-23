@@ -85,7 +85,9 @@ const BestSellerSection = () => {
                   </span>
                 </div>
                 <div className=" flex justify-items-end cursor-pointer ">
-                  <span className="text-xl text-gray-400">{">"}</span>
+                  <NavLink to="/NotFound">
+                    <span className="text-xl text-gray-400">{">"}</span>
+                  </NavLink>
                 </div>
               </div>
             </div>
