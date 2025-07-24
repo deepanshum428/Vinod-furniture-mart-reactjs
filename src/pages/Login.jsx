@@ -83,7 +83,7 @@ function Login() {
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl flex flex-col md:flex-row overflow-hidden">
         {/* Left Side */}
         <div className="md:w-1/2 bg-[#f8f5f2] text-[#a65a32] p-8 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold mb-4 text-center">Welcome Back</h1>
+          <h1 className="text-3xl font-bold mb-4 text-center">Welcome</h1>
           <p className="mb-6 text-sm text-center">
             Login to continue to <br />
             <strong>Vinod Furniture Mart</strong>
