@@ -4,8 +4,7 @@ import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 import logo from "../../assets/logo.png"; // update path if different
 
 const Footer = () => {
-  const navClass = ({ isActive }) =>
-    `hover:underline ${isActive ? "font-bold underline" : ""}`;
+  const navClass = ({ isActive }) => ` ${isActive ? "font-bold " : ""}`;
 
   return (
     <footer className="bg-[#f8f5f2] text-[#a65a32] pt-10 pb-6 px-4 md:px-12">
