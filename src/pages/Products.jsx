@@ -47,7 +47,7 @@ export default function Products() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#8b4729] mb-2">
             Explore Our Collection
           </h1>
-          <p className="text-gray-600 text-base md:text-lg">
+          <p className="text-[#a65a32] text-base md:text-lg">
             Choose from a wide range of comfort and elegance
           </p>
         </header>

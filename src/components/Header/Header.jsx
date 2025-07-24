@@ -30,7 +30,7 @@ const Header = () => {
                 Products
               </NavLink>
               <NavLink
-                to="/our-story"
+                to="/about"
                 className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
               >
                 Our Story
