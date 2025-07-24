@@ -5,16 +5,18 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import NotFound from "./components/NotFound/NotFound.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
+import Products from "./pages/Products.jsx";
 
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/products" element={<Products />}></Route>
         <Route path="" element={<Home />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
       </Route>
     )
   );
