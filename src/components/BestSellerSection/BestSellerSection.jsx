@@ -2,7 +2,7 @@ import React from "react";
 import bed from "../../assets/bed1.jpg";
 import dainingTable1 from "../../assets/dainingTable1.avif";
 import dainingTable2 from "../../assets/dainingTable2.jpg";
-import NotFound from "../NotFound/NotFound";
+import ErrorPage from "../../pages/ErrorPage";
 import { NavLink } from "react-router-dom";
 
 const bestsellers = [
@@ -37,7 +37,7 @@ const BestSellerSection = () => {
     <section className="bg-[#f8f6f4] py-14 px-6 sm:px-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">Shop our bestsellers</h2>
-        <NavLink to="/NotFound">
+        <NavLink to="/ErrorPage">
           <button className="text-[#8c6b4d] font-medium hover:underline cursor-pointer">
             View all Product
           </button>
@@ -59,7 +59,7 @@ const BestSellerSection = () => {
                     style={{ backgroundColor: color }}
                   ></span>
                 ))}
-                <NavLink to={"/NotFound"}>
+                <NavLink to={"/ErrorPage"}>
                   <span className="text-xs text-gray-500 cursor-pointer hover:underline">
                     + More options
                   </span>
@@ -76,8 +76,8 @@ const BestSellerSection = () => {
             <div className="px-1 pl-4">
               <h3 className="text-sm font-semibold">{item.title}</h3>
               <div className="flex items-center justify-between text-sm mt-1">
-                <div className="gap-2">
-                  <span className="line-through text-gray-400">
+                <div className="gap-8">
+                  <span className="line-through mr-2  text-gray-400">
                     {item.originalPrice}
                   </span>
                   <span className="text-[#b44b2a] font-medium">
@@ -85,7 +85,7 @@ const BestSellerSection = () => {
                   </span>
                 </div>
                 <div className=" flex justify-items-end cursor-pointer ">
-                  <NavLink to="/NotFound">
+                  <NavLink to="/ErrorPage">
                     <span className="text-xl text-gray-400">{">"}</span>
                   </NavLink>
                 </div>
