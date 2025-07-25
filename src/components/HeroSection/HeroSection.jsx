@@ -27,8 +27,8 @@ const HeroSection = () => {
       <div className="absolute z-10 bottom-8 left-8 right-[160px] max-w-xl text-white space-y-4">
         <h1 className="text-3xl md:text-5xl font-bold">The Monsoon Sale</h1>
         <p className="text-base md:text-lg">
-          Integer eget at augue suspendisse in vitae enim habitant. At donec
-          pretium ultrices ac luctus vitae nibh erat.
+          Discover comfort that adapts to your lifestyle. Thoughtfully crafted
+          designs, built to elevate your everyday space.
         </p>
         <NavLink to={"/products"}>
           <button className="bg-[#a65a32] hover:bg-[#8a4b2b] px-6 py-2 rounded text-white font-semibold cursor-pointer">
