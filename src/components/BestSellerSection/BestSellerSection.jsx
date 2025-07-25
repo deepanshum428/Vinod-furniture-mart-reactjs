@@ -37,7 +37,7 @@ const BestSellerSection = () => {
     <section className="bg-[#f8f6f4] py-14 px-6 sm:px-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">Shop our bestsellers</h2>
-        <NavLink to="/ErrorPage">
+        <NavLink to="/products">
           <button className="text-[#8c6b4d] font-medium hover:underline cursor-pointer">
             View all Product
           </button>
