@@ -3,6 +3,7 @@ import mainSofa from "../../assets/mainSofa.avif";
 import thumb1 from "../../assets/heroSectionS1.avif";
 import thumb2 from "../../assets/heroSectionS2.avif";
 import thumb3 from "../../assets/heroSectionS3.avif";
+import { NavLink } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -23,9 +24,11 @@ const HeroSection = () => {
           Integer eget at augue suspendisse in vitae enim habitant. At donec
           pretium ultrices ac luctus vitae nibh erat.
         </p>
-        <button className="bg-[#a65a32] hover:bg-[#8a4b2b] px-6 py-2 rounded text-white font-semibold">
-          Shop Now
-        </button>
+        <NavLink to={"/products"}>
+          <button className="bg-[#a65a32] hover:bg-[#8a4b2b] px-6 py-2 rounded text-white font-semibold cursor-pointer">
+            Shop Now
+          </button>
+        </NavLink>
       </div>
 
       {/* Thumbnails Gallery (bottom right) */}
