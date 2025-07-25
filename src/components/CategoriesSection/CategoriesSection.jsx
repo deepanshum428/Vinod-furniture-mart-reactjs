@@ -5,6 +5,7 @@ import sectional from "../../assets/sectionalSofa.avif";
 import loveseat from "../../assets/loveseatsSofa.avif";
 import sofaSinlge from "../../assets/singleseaterSofa.avif";
 import ETC from "../../assets/etcSofa.avif";
+import { NavLink } from "react-router-dom";
 
 const sofaData = [
   {
@@ -82,7 +83,9 @@ export default function CategoriesSection() {
           <h3 className="text-lg font-semibold text-[#a65a32]">
             {activeItem.title}
           </h3>
-          <FaArrowRight className="text-[#a65a32] group-hover:translate-x-1 transition-transform" />
+          <NavLink to={"/products"}>
+            <FaArrowRight className="text-[#a65a32] group-hover:translate-x-1 transition-transform" />
+          </NavLink>
         </div>
 
         <p className="text-sm text-gray-700 py-4 leading-relaxed">
