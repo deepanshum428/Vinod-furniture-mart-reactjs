@@ -8,6 +8,10 @@ import React, { useState } from "react";
 const HeroSection = () => {
   const [backgroundImage, setBackGroundImage] = useState(mainSofa);
 
+  const handleThumbnailClick = (thumbnail) => {
+    setBackGroundImage(thumbnail);
+  };
+
   return (
     <div
       className="relative w-full bg-cover bg-center bg-no-repeat"
@@ -38,26 +42,34 @@ const HeroSection = () => {
         <img
           src={mainSofa}
           alt="Product 0"
-          onClick={() => setBackGroundImage(mainSofa)}
-          className="w-38 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
+          onClick={() => handleThumbnailClick(mainSofa)}
+          className={`${
+            backgroundImage === mainSofa ? "w-38" : "w-22"
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
         />
         <img
           src={thumb1}
           alt="Product 1"
-          onClick={() => setBackGroundImage(thumb1)}
-          className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
+          onClick={() => handleThumbnailClick(thumb1)}
+          className={`${
+            backgroundImage === thumb1 ? "w-38" : "w-22"
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
         />
         <img
           src={thumb2}
           alt="Product 2"
-          onClick={() => setBackGroundImage(thumb2)}
-          className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
+          onClick={() => handleThumbnailClick(thumb2)}
+          className={`${
+            backgroundImage === thumb2 ? "w-38" : "w-22"
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
         />
         <img
           src={thumb3}
           alt="Product 3"
-          onClick={() => setBackGroundImage(thumb3)}
-          className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
+          onClick={() => handleThumbnailClick(thumb3)}
+          className={`${
+            backgroundImage === thumb3 ? "w-38" : "w-22"
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
         />
       </div>
     </div>
