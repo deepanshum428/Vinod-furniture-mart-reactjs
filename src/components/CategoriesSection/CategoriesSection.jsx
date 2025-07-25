@@ -61,9 +61,9 @@ export default function CategoriesSection() {
   const activeItem = sofaData[activeIndex];
 
   return (
-    <div className="w-full flex flex-col items-center md:flex-row  p-6 bg-[#f8f6f4] justify-around">
+    <div className="w-full flex flex-col  md:flex-row  p-6 bg-[#f8f6f4] justify-around">
       {/* Left Section */}
-      <div className="flex-1 max-w-xl ">
+      <div className="flex-1 flex flex-col max-w-xl ">
         <h2 className="text-2xl font-semibold mb-6 text-[#2e1b0e]">
           Our categories
         </h2>
@@ -79,12 +79,12 @@ export default function CategoriesSection() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between group cursor-pointer border-t border-b py-3 border-[#c8ae9d]">
+        <div className="flex items-center justify-between group cursor-pointer border-t border-b py-3 border-[#c8ae9d] ">
           <h3 className="text-lg font-semibold text-[#a65a32]">
             {activeItem.title}
           </h3>
           <NavLink to={"/products"}>
-            <FaArrowRight className="text-[#a65a32] group-hover:translate-x-1 transition-transform" />
+            <FaArrowRight className="text-[#a65a32] group-hover:translate-x-1 transition-transform " />
           </NavLink>
         </div>
 
@@ -93,7 +93,7 @@ export default function CategoriesSection() {
         </p>
 
         {/* Navigation Buttons */}
-        <div className="flex items-center gap-4 mt-2">
+        <div className="flex items-center gap-4 mt-auto">
           <button
             onClick={handlePrev}
             className="bg-[#a65a32] text-white px-3 py-1 rounded hover:bg-[#8b4729]"
