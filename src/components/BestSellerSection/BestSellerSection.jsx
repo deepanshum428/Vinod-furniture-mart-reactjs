@@ -39,7 +39,7 @@ const BestSellerSection = () => {
         <h2 className="text-xl font-semibold">Shop our bestsellers</h2>
         <NavLink to="/products">
           <button className="text-[#8c6b4d] font-medium hover:underline cursor-pointer">
-            View all Product
+            View all Products
           </button>
         </NavLink>
       </div>
