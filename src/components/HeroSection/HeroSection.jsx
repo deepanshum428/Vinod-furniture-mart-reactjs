@@ -1,16 +1,18 @@
-import React from "react";
 import mainSofa from "../../assets/mainSofa.avif";
 import thumb1 from "../../assets/heroSectionS1.avif";
 import thumb2 from "../../assets/heroSectionS2.avif";
 import thumb3 from "../../assets/heroSectionS3.avif";
 import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 
 const HeroSection = () => {
+  const [backgroundImage, setBackGroundImage] = useState(mainSofa);
+
   return (
     <div
       className="relative w-full bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url(${mainSofa})`,
+        backgroundImage: `url(${backgroundImage})`,
         height: "600px",
       }}
     >
@@ -35,22 +37,26 @@ const HeroSection = () => {
       <div className="absolute right-6 bottom-6 md:flex hidden gap-3 bg-[#e9e6de2d] rounded-md p-2 shadow-lg z-30">
         <img
           src={mainSofa}
-          alt="Product 1"
+          alt="Product 0"
+          onClick={() => setBackGroundImage(mainSofa)}
           className="w-38 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
         />
         <img
           src={thumb1}
           alt="Product 1"
+          onClick={() => setBackGroundImage(thumb1)}
           className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
         />
         <img
           src={thumb2}
           alt="Product 2"
+          onClick={() => setBackGroundImage(thumb2)}
           className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
         />
         <img
           src={thumb3}
           alt="Product 3"
+          onClick={() => setBackGroundImage(thumb3)}
           className="w-22 h-18 object-cover rounded cursor-pointer hover:scale-105 transition"
         />
       </div>
