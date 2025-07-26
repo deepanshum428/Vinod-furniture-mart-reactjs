@@ -16,28 +16,52 @@ const Header = () => {
           {/* Desktop Header */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* Left Nav */}
-            <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1 cursor-pointer">
+            <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1 cursor-pointer  transition-transform duration-200 outline-none active:scale-95">
               <NavLink
                 to="/"
-                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "font-bold hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
+                      : ""
+                  }`
+                }
               >
                 Home
               </NavLink>
               <NavLink
                 to="/products"
-                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "font-bold hover:scale-105 transition-transform duration-200 outline-none active:scale-95 "
+                      : ""
+                  }`
+                }
               >
                 Products
               </NavLink>
               <NavLink
                 to="/about"
-                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "font-bold hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
+                      : ""
+                  }`
+                }
               >
                 Our Story
               </NavLink>
               <NavLink
                 to="/contact"
-                className={({ isActive }) => `${isActive ? "font-bold " : ""}`}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "font-bold hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
+                      : ""
+                  }`
+                }
               >
                 Contact Us
               </NavLink>
