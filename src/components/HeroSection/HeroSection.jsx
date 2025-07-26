@@ -38,14 +38,14 @@ const HeroSection = () => {
       </div>
 
       {/* Thumbnails Gallery (bottom right) */}
-      <div className="absolute right-6 bottom-6 md:flex hidden gap-3 bg-[#e9e6de2d] rounded-md p-2 shadow-lg z-30">
+      <div className="absolute right-6 bottom-6 md:flex hidden gap-3 bg-[#e9e6de2d] rounded-md p-2 shadow-lg z-30 ">
         <img
           src={mainSofa}
           alt="Product 0"
           onClick={() => handleThumbnailClick(mainSofa)}
           className={`${
             backgroundImage === mainSofa ? "w-38" : "w-22"
-          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition active:scale-95`}
         />
         <img
           src={thumb1}
@@ -53,7 +53,7 @@ const HeroSection = () => {
           onClick={() => handleThumbnailClick(thumb1)}
           className={`${
             backgroundImage === thumb1 ? "w-38" : "w-22"
-          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition active:scale-95`}
         />
         <img
           src={thumb2}
@@ -61,7 +61,7 @@ const HeroSection = () => {
           onClick={() => handleThumbnailClick(thumb2)}
           className={`${
             backgroundImage === thumb2 ? "w-38" : "w-22"
-          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition active:scale-95`}
         />
         <img
           src={thumb3}
@@ -69,7 +69,7 @@ const HeroSection = () => {
           onClick={() => handleThumbnailClick(thumb3)}
           className={`${
             backgroundImage === thumb3 ? "w-38" : "w-22"
-          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition`}
+          } h-18 object-cover rounded cursor-pointer hover:scale-105 transition active:scale-95`}
         />
       </div>
     </div>
