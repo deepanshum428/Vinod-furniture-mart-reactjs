@@ -18,7 +18,6 @@ const ShopLookSection = () => {
     });
   };
   const activeItem = Items[activeIndex];
-  console.log("Active Index", activeIndex);
 
   return (
     <div className="w-full bg-white p-6">
