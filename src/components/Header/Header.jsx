@@ -65,7 +65,7 @@ const Header = () => {
                 <Search className="absolute top-2.5 right-4 text-[#a65a32] w-4 h-4 cursor-pointer" />
               </div>
               <NavLink to="/cart">
-                <ShoppingCart className="text-[#a65a32] w-6 h-6 cursor-pointer" />
+                <ShoppingCart className="text-[#a65a32] w-6 h-6 cursor-pointer hover:scale-105 transition-transform duration-200 outline-none active:scale-95" />
               </NavLink>
             </div>
           </div>

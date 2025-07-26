@@ -31,10 +31,10 @@ const ShopLookSection = () => {
 
         {/* Arrows */}
         <div className="absolute top-4 right-4 flex gap-3 z-30">
-          <button className="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center cursor-pointer">
+          <button className="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-neutral-400 hover:scale-105 transition-transform duration-200 outline-none active:scale-95">
             <ArrowLeft size={16} onClick={handlePrev} />
           </button>
-          <button className="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center cursor-pointer">
+          <button className="w-9 h-9 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-neutral-400 hover:scale-105 transition-transform duration-200 outline-none active:scale-95">
             <ArrowRight size={16} onClick={handleNext} />
           </button>
         </div>

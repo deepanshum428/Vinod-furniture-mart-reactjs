@@ -96,13 +96,13 @@ export default function CategoriesSection() {
         <div className="flex items-center gap-4 mt-auto">
           <button
             onClick={handlePrev}
-            className="bg-[#a65a32] text-white px-3 py-1 rounded hover:bg-[#8b4729]"
+            className="bg-[#a65a32] text-white px-3 py-1 rounded hover:bg-[#8b4729] cursor-pointer hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
           >
             <FaArrowLeft />
           </button>
           <button
             onClick={handleNext}
-            className="bg-[#a65a32] text-white px-3 py-1 rounded hover:bg-[#8b4729]"
+            className="bg-[#a65a32] text-white px-3 py-1 rounded hover:bg-[#8b4729] cursor-pointer hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
           >
             <FaArrowRight />
           </button>

@@ -31,7 +31,7 @@ const HeroSection = () => {
           designs, built to elevate your everyday space.
         </p>
         <NavLink to={"/products"}>
-          <button className="bg-[#a65a32] hover:bg-[#8a4b2b] px-6 py-2 rounded text-white font-semibold cursor-pointer">
+          <button className="bg-[#a65a32] hover:bg-[#8a4b2b] px-6 py-2 rounded text-white font-semibold cursor-pointer hover:scale-105 transition-transform duration-200 outline-none active:scale-95">
             Shop Now
           </button>
         </NavLink>
