@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
-import Products from "./pages/Products.jsx";
+import Products from "./components/Products/Products.jsx";
 import Login from "./pages/Login.jsx";
 import About from "./pages/About.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -17,6 +17,7 @@ import { useState } from "react";
 import { EMPTY_CART } from "./cart.js";
 import { LOGGEDIN_USER } from "./user.js";
 import Contact from "./pages/Contact.jsx";
+import ProductDetail from "./components/ProductDetails/ProductDetail.jsx";
 
 const App = () => {
   const [cart, setCart] = useState(EMPTY_CART);
@@ -27,6 +28,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
+        <Route path="/product/:id" element={<ProductDetail />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/login" element={<Login />}></Route>
