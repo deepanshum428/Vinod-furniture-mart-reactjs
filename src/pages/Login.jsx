@@ -4,7 +4,6 @@ import { FaEnvelope, FaLock, FaSignInAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { MyContext } from "../context";
 import { saveUser } from "../user";
-import { Product } from "./Products.jsx";
 
 function Login() {
   const { setLoggedInUser } = useContext(MyContext);
