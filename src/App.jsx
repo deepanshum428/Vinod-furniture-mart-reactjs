@@ -16,6 +16,7 @@ import { MyContext } from "./context.js";
 import { useState } from "react";
 import { EMPTY_CART } from "./cart.js";
 import { LOGGEDIN_USER } from "./user.js";
+import Contact from "./pages/Contact.jsx";
 
 const App = () => {
   const [cart, setCart] = useState(EMPTY_CART);
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>

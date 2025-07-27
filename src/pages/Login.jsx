@@ -4,6 +4,7 @@ import { FaEnvelope, FaLock, FaSignInAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { MyContext } from "../context";
 import { saveUser } from "../user";
+import { Product } from "./Products.jsx";
 
 function Login() {
   const { setLoggedInUser } = useContext(MyContext);
@@ -65,7 +66,7 @@ function Login() {
         confirmButtonColor: "#4F46E5", // Indigo 600
       });
 
-      navigate("/");
+      navigate("/products");
     } catch (error) {
       Swal.fire({
         title: "Login Failed",
@@ -83,7 +84,9 @@ function Login() {
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl flex flex-col md:flex-row overflow-hidden">
         {/* Left Side */}
         <div className="md:w-1/2 bg-[#f8f5f2] text-[#a65a32] p-8 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold mb-4 text-center">Welcome</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+            Welcome
+          </h1>
           <p className="mb-6 text-sm text-center">
             Login to continue to <br />
             <strong>Vinod Furniture Mart</strong>
@@ -97,7 +100,9 @@ function Login() {
 
         {/* Right Side - Form */}
         <div className="md:w-1/2 p-8 ">
-          <h2 className="text-2xl font-semibold text-[#a65a32] mb-6">Login</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+            Login
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="flex items-center gap-2 text-sm font-medium text-[#a65a32]">
@@ -107,6 +112,7 @@ function Login() {
               <input
                 type="email"
                 name="email"
+                placeholder="example@email.com"
                 value={formData.email}
                 onChange={handleInputChange}
                 className={`mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
@@ -128,6 +134,7 @@ function Login() {
               <input
                 type="password"
                 name="password"
+                placeholder="At least 6 characters"
                 value={formData.password}
                 onChange={handleInputChange}
                 className={`mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
@@ -144,13 +151,13 @@ function Login() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#a65a32] hover:bg-[#8a4b2b] text-white py-2 rounded-md flex items-center justify-center gap-2  transition"
+              className="w-full bg-[#a65a32] hover:bg-[#8a4b2b] text-white py-2 rounded-md flex items-center justify-center gap-2  transition-transform hover:scale-102 duration-200 outline-none active:scale-98 "
             >
               {isSubmitting ? "Logging in..." : "Login"}
               <FaSignInAlt />
             </button>
 
-            <p className="text-sm text-center mt-4 text-[#a65a32]">
+            <p className=" text-center mt-4 text-[#a65a32] font-sm">
               Don't have an account?{" "}
               <NavLink
                 to="/signup"

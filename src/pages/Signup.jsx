@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FaUser, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaArrowRight,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 function Signup() {
   const initialUserDetail = {
@@ -94,116 +100,121 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row items-center justify-center px-4 py-8">
-      {/* Left Panel */}
-      <div className="hidden md:flex flex-col justify-center w-full md:w-1/2 px-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Join Our Community
-        </h1>
-        <p className="text-gray-600 mb-6">Create your account to get started</p>
-        <ul className="space-y-2 text-gray-600">
-          <li>✓ Access exclusive content</li>
-          <li>✓ Save your preferences</li>
-          <li>✓ Faster checkout</li>
-        </ul>
-      </div>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4">
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl flex flex-col md:flex-row overflow-hidden">
+        {/* Left Panel */}
+        <div className="md:w-1/2 bg-[#f8f5f2] text-[#a65a32] p-8 flex flex-col justify-center">
+          <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+            Join Our Community
+          </h1>
+          <p className="mb-6 text-sm text-center">
+            Create your account to get started with <br />
+            <strong>Vinod Furniture Mart</strong>
+          </p>
+          <ul className="text-sm space-y-2 text-center">
+            <li>✓ Access exclusive content</li>
+            <li>✓ Save your preferences</li>
+            <li>✓ Faster checkout</li>
+          </ul>
+        </div>
 
-      {/* Signup Form */}
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full md:w-1/2">
-        <h2 className="text-2xl font-semibold mb-2 text-center">
-          Create Account
-        </h2>
-        <p className="text-center text-gray-500 mb-6">
-          Please fill in your details
-        </p>
+        {/* Signup Form */}
+        <div className="md:w-1/2 p-8">
+          <h2 className="text-2xl font-semibold mb-2 text-gray-800 text-center">
+            Create Account
+          </h2>
+          <p className="text-center text-gray-500 mb-6">
+            Please fill in your details
+          </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Name Field */}
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">
-              Full Name
-            </label>
-            <div className="relative">
-              <FaUser className="absolute left-3 top-3 text-gray-400" />
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Name Field */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-[#a65a32]">
+                <FaUser />
+                Full Name
+              </label>
               <input
                 type="text"
                 name="name"
                 placeholder="John Doe"
                 value={data.name}
                 onChange={handleInput}
-                className={`pl-10 pr-4 py-2 w-full border rounded-md ${
+                className={`px-4 py-2 w-full border rounded-md ${
                   errors.name ? "border-red-500" : "border-gray-300"
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
-            </div>
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
 
-          {/* Email Field */}
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">
-              Email Address
-            </label>
-            <div className="relative">
-              <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+              )}
+            </div>
+
+            {/* Email Field */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-[#a65a32]">
+                <FaEnvelope />
+                Email Address
+              </label>
               <input
                 type="email"
                 name="email"
                 placeholder="example@email.com"
                 value={data.email}
                 onChange={handleInput}
-                className={`pl-10 pr-4 py-2 w-full border rounded-md ${
+                className={`px-4 py-2 w-full border rounded-md ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
-            </div>
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-            )}
-          </div>
 
-          {/* Password Field */}
-          <div>
-            <label className="block mb-1 text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <div className="relative">
-              <FaLock className="absolute left-3 top-3 text-gray-400" />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+
+            {/* Password Field */}
+            <div>
+              <label className="flex items-center gap-2 text-sm font-medium text-[#a65a32]">
+                <FaLock />
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
                 placeholder="At least 6 characters"
                 value={data.password}
                 onChange={handleInput}
-                className={`pl-10 pr-4 py-2 w-full border rounded-md ${
+                className={`px-4 py-2 w-full border rounded-md ${
                   errors.password ? "border-red-500" : "border-gray-300"
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
+
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
             </div>
-            {errors.password && (
-              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-            )}
-          </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full flex items-center justify-center bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
-          >
-            {isSubmitting ? "Creating Account..." : "Create Account"}
-            <FaArrowRight className="ml-2" />
-          </button>
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-[#a65a32] hover:bg-[#8a4b2b] text-white py-2 rounded-md flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-102 outline-none active:scale-98"
+            >
+              {isSubmitting ? "Creating Account..." : "Create Account"}
+              <FaSignOutAlt />
+            </button>
 
-          <p className="text-center text-sm text-gray-500 mt-4">
-            Already have an account?{" "}
-            <NavLink to="/login" className="text-blue-600 hover:underline">
-              Sign in
-            </NavLink>
-          </p>
-        </form>
+            <p className="text-center  text-[#a65a32] mt-4 ">
+              Already have an account?{" "}
+              <NavLink
+                to="/login"
+                className="text-indigo-600 font-medium hover:underline"
+              >
+                Sign in
+              </NavLink>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );
