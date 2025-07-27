@@ -22,9 +22,7 @@ export const getCartValue = (email = "") => {
 
 export const CART_DEFAULT = getCartValue();
 
-export const setCartProducts = (cart:CartValue, email) => {
+export const saveCartProducts = (cart:CartValue, email) => {
     localStorage.setItem(cartKey(email), JSON.stringify(cart));
 }
-export const saveCartProducts = (data, email) => {
-  localStorage.setItem(`cart-products-${email}`, JSON.stringify(data));
-};
+
