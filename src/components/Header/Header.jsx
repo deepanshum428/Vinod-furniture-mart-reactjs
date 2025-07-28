@@ -2,15 +2,49 @@ import React, { useState } from "react";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../../assets/Vinod Furniture Mart.svg";
 import { NavLink } from "react-router-dom";
+import { MyContext } from "../../context";
+import { FaSignOutAlt } from "react-icons/fa";
+import { saveUser } from "../../user";
+import Swal from "sweetalert2";
+import { EMPTY_CART } from "../../cart";
+import { useContext } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const { cart, loggedInUser, setCart, setLoggedInUser } =
+    useContext(MyContext);
+
+  const handleLogOut = (event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: "Logout Confirmation",
+      text: "Are you sure you want to logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Logged Out!",
+          "You have been successfully logged out.",
+          "success"
+        );
+        setLoggedInUser(null);
+        saveUser(null);
+        setCart({ ...EMPTY_CART });
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <>
-      <header className="fixed top-0 left-0 w-[calc(100%-80px)] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm mx-10 mt-5">
+      <header className="fixed top-0 left-0 w-[calc(100%-2rem)] mx-[1rem] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm mt-[1rem]">
         <div
-          className="max-w-full mx-auto flex items-center justify-between px-12 py-2"
+          className="w-full md:max-w-screen-xl mx-auto px-4 md:px-12 py-2"
           style={{ minHeight: "50px" }}
         >
           {/* Desktop Header */}
@@ -88,9 +122,35 @@ const Header = () => {
                 />
                 <Search className="absolute top-2.5 right-4 text-[#a65a32] w-4 h-4 cursor-pointer" />
               </div>
-              <NavLink to="/cart">
-                <ShoppingCart className="text-[#a65a32] w-6 h-6 cursor-pointer hover:scale-105 transition-transform duration-200 outline-none active:scale-95" />
-              </NavLink>
+              <div className="flex items-center gap-6">
+                <NavLink
+                  to="/cart"
+                  className=" relative flex items-center gap-2 text-[#a65a32] hover:scale-105 transition-transform duration-200"
+                >
+                  <ShoppingCart className="w-6 h-6" />
+                  <span className="absolute -top-1 -right-2 bg-[#a65a32] text-white text-[10px] px-1.5 py-[1px] rounded-full font-semibold">
+                    {cart.products.length}
+                  </span>
+                </NavLink>
+
+                {loggedInUser && (
+                  <div className="relative flex items-center gap-2">
+                    <button className="flex items-center gap-2 text-[#a65a32] hover:scale-105 transition-transform duration-200">
+                      <FaUser className="w-4 h-4" />
+                      <span className="text-sm font-medium">
+                        {loggedInUser.name}
+                      </span>
+                    </button>
+                    <button
+                      className="flex items-center gap-1 text-red-500 hover:text-red-600 text-sm transition duration-200"
+                      onClick={handleLogOut}
+                    >
+                      <FaSignOutAlt className="w-4 h-4" />
+                      Log Out
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -191,6 +251,29 @@ const Header = () => {
                   Shopping Cart
                 </NavLink>
               </div>
+              {/* Auth Section */}
+              {loggedInUser && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex flex-col gap-3 px-4">
+                    <div className="flex items-center gap-2 text-[#a65a32]">
+                      <FaUser className="w-4 h-4" />
+                      <span className="text-sm font-medium">
+                        {loggedInUser.name}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setMenuOpen(false);
+                        handleLogOut(new Event("logout"));
+                      }}
+                      className="flex items-center gap-2 text-red-500 hover:text-red-600 text-sm"
+                    >
+                      <FaSignOutAlt className="w-4 h-4" />
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
