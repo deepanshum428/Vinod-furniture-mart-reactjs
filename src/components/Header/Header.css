@@ -1,0 +1,38 @@
+.header-user-dropdown {
+    position:relative;
+}
+
+.header-dropdown-menu {
+    position: absolute;
+    right:0;
+    top:100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow:  0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.header-user-dropdown:hover .header-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+  text-align: left;
+  color: #a65a32;
+  transition: all 0.3 ease;
+}

@@ -3,11 +3,12 @@ import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../../assets/Vinod Furniture Mart.svg";
 import { NavLink } from "react-router-dom";
 import { MyContext } from "../../context";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { saveUser } from "../../user";
 import Swal from "sweetalert2";
 import { EMPTY_CART } from "../../cart";
 import { useContext } from "react";
+import "./Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,13 +43,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-[calc(100%-2rem)] mx-[1rem] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm mt-[1rem]">
+      <header className="fixed top-0 left-0 w-[calc(100%-4rem)] mx-[2rem] z-50 bg-[#f8f5f2] border-b border-gray-200 shadow-sm mt-[1rem] ">
         <div
           className="w-full md:max-w-screen-xl mx-auto px-4 md:px-12 py-2"
           style={{ minHeight: "50px" }}
         >
           {/* Desktop Header */}
-          <div className="hidden md:flex items-center justify-between w-full">
+          <div className="hidden md:flex items-center justify-stretch w-full">
             {/* Left Nav */}
             <nav className="flex space-x-8 text-base text-[#a65a32] font-normal flex-1 cursor-pointer  transition-transform duration-200 outline-none active:scale-95">
               <NavLink
@@ -134,20 +135,24 @@ const Header = () => {
                 </NavLink>
 
                 {loggedInUser && (
-                  <div className="relative flex items-center gap-2">
+                  <div className="header-user-dropdown">
                     <button className="flex items-center gap-2 text-[#a65a32] hover:scale-105 transition-transform duration-200">
                       <FaUser className="w-4 h-4" />
-                      <span className="text-sm font-medium">
-                        {loggedInUser.name}
-                      </span>
                     </button>
-                    <button
-                      className="flex items-center gap-1 text-red-500 hover:text-red-600 text-sm transition duration-200"
-                      onClick={handleLogOut}
-                    >
-                      <FaSignOutAlt className="w-4 h-4" />
-                      Log Out
-                    </button>
+                    <div className="header-dropdown-menu">
+                      <div className="header-dropdown-item">
+                        <span className="text-sm font-medium">
+                          {loggedInUser.name}
+                        </span>
+                        <button
+                          className="flex flex-row justify-center items-center cursor-pointer bg-[#a65a32] hover:bg-[#8b4729] text-white px-4 py-1 text-xs font-semibold rounded hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
+                          onClick={handleLogOut}
+                        >
+                          Log Out
+                          <FaSignOutAlt className="w-4 h-4justify-center items-center" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
