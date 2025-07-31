@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../../assets/Vinod Furniture Mart.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../../context";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { saveUser } from "../../user";
@@ -15,6 +15,7 @@ const Header = () => {
 
   const { cart, loggedInUser, setCart, setLoggedInUser } =
     useContext(MyContext);
+  const navigate = useNavigate();
 
   const handleLogOut = (event) => {
     event.preventDefault();

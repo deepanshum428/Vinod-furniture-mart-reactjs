@@ -58,14 +58,13 @@ function Login() {
       saveUser(user);
       setLoggedInUser(user);
 
+      navigate("/products"); // Only runs if above line doesn't throw
       await Swal.fire({
         title: "Login Successful!",
         icon: "success",
         confirmButtonText: "Continue",
         confirmButtonColor: "#4F46E5", // Indigo 600
       });
-
-      navigate("/products");
     } catch (error) {
       Swal.fire({
         title: "Login Failed",

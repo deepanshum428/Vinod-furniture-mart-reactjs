@@ -18,6 +18,7 @@ import { EMPTY_CART } from "./cart.js";
 import { LOGGEDIN_USER } from "./user.js";
 import Contact from "./pages/Contact.jsx";
 import ProductDetail from "./components/ProductDetails/ProductDetail.jsx";
+import Cart from "./pages/Cart.jsx";
 
 const App = () => {
   const [cart, setCart] = useState(EMPTY_CART);
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        {loggedInUser && <Route path="/cart" element={<Cart />}></Route>}
         <Route path="*" element={<ErrorPage />}></Route>
       </Route>
     )
