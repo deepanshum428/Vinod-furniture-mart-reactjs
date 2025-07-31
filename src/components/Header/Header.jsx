@@ -179,6 +179,9 @@ const Header = () => {
 
             <NavLink to="/cart">
               <ShoppingCart className="text-[#a65a32] w-6 h-6" />
+              <span className="absolute top-1 right-2 bg-[#a65a32] text-white text-[10px] px-1.5 py-[1px] rounded-full font-semibold">
+                {cart.products.length}
+              </span>
             </NavLink>
           </div>
         </div>
