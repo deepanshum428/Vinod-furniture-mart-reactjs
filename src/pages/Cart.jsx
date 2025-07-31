@@ -101,7 +101,7 @@ const Cart = () => {
 
                     <div className="flex items-center mt-3 space-x-2">
                       <button
-                        className="w-8 h-8 bg-[#e3d7cf] hover:bg-[#d6c4b8] text-[#59341c] rounded"
+                        className="w-8 h-8 bg-[#e3d7cf] hover:bg-[#d6c4b8] text-[#59341c] rounded cursor-pointer transition-transform duration-200 hover:scale-102 active:scale-98"
                         onClick={() =>
                           updateQuantity(index, product.quantity - 1)
                         }
@@ -110,7 +110,7 @@ const Cart = () => {
                       </button>
                       <span className="px-3">{product.quantity}</span>
                       <button
-                        className="w-8 h-8 bg-[#e3d7cf] hover:bg-[#d6c4b8] text-[#59341c] rounded"
+                        className="w-8 h-8 bg-[#e3d7cf] hover:bg-[#d6c4b8] text-[#59341c] rounded cursor-pointer transition-transform duration-200 hover:scale-102 active:scale-98"
                         onClick={() =>
                           updateQuantity(index, product.quantity + 1)
                         }
@@ -126,13 +126,13 @@ const Cart = () => {
                     <div className="flex items-center gap-4 mt-4">
                       <NavLink
                         to={`/product/${product.id}`}
-                        className="text-[#a65a32] text-sm hover:underline"
+                        className="text-[#a65a32] text-sm hover:underline font-semibold"
                       >
                         View Details
                       </NavLink>
                       <button
                         onClick={() => removeFromCart(index)}
-                        className="text-sm text-red-600 hover:underline"
+                        className="text-sm text-red-600 hover:underline font-semibold cursor-pointer"
                       >
                         Remove
                       </button>
@@ -167,7 +167,7 @@ const Cart = () => {
                 <span>₹{calculateTotal().toFixed(2)}</span>
               </div>
               <NavLink to="payment">
-                <button className="mt-6 w-full bg-[#a65a32] hover:bg-[#8b4729] text-white py-2 rounded font-medium transition cursor-pointer">
+                <button className="mt-6 w-full bg-[#a65a32] hover:bg-[#8b4729] text-white py-2 rounded font-medium transition-transform duration-200 hover:scale-105 active:scale-95 outline-none cursor-pointer">
                   Proceed To Checkout
                 </button>
               </NavLink>

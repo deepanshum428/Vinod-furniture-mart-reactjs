@@ -77,7 +77,7 @@ export default function Products() {
                 </NavLink>
                 <button
                   id={`add-btn-${product.id}`}
-                  className="bg-[#a65a32] hover:bg-[#8b4729] text-white px-4 py-1 text-sm font-semibold rounded hover:scale-105 transition-transform duration-200 outline-none active:scale-95"
+                  className="bg-[#a65a32] hover:bg-[#8b4729] text-white px-4 py-1 text-sm font-semibold rounded hover:scale-105 transition-transform duration-200 outline-none active:scale-95 cursor-pointer"
                   onClick={() => addToCart(product)}
                 >
                   {cart.products.some((item) => item.id === product.id)
