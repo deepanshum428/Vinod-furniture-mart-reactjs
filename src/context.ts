@@ -1,10 +1,10 @@
 import {createContext} from "react";
-import { CART_DEFAULT, CartValue } from "./cart";
 import { LOGGEDIN_USER } from "./user";
+import { CartValue, EMPTY_CART } from "./cart";
 
 export const MyContext = createContext({
-    cart: CART_DEFAULT,
-    setCart:(cart:CartValue) => {},
     loggedInUser:LOGGEDIN_USER,
     setLoggedInUser: (user) => {},
+    cart: EMPTY_CART,
+    setCart:(cart:CartValue) => {},
 });

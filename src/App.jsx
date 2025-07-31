@@ -14,15 +14,15 @@ import About from "./pages/About.jsx";
 import Signup from "./pages/Signup.jsx";
 import { MyContext } from "./context.js";
 import { useState } from "react";
-import { EMPTY_CART } from "./cart.js";
+import { getCartValue } from "./cart.js";
 import { LOGGEDIN_USER } from "./user.js";
 import Contact from "./pages/Contact.jsx";
 import ProductDetail from "./components/ProductDetails/ProductDetail.jsx";
 import Cart from "./pages/Cart.jsx";
 
 const App = () => {
-  const [cart, setCart] = useState(EMPTY_CART);
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
+  const [cart, setCart] = useState(getCartValue(loggedInUser?.email));
 
   const router = createBrowserRouter(
     createRoutesFromElements(
