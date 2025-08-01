@@ -92,10 +92,10 @@ const Cart = () => {
                     <h2 className="text-lg font-semibold text-[#59341c]">
                       {product.name}
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 font-semibold">
                       {product.description}
                     </p>
-                    <p className="text-[#8b4729] font-semibold mt-2">
+                    <p className="text-[#8b4729] font-bold mt-2">
                       ₹{product.price.toFixed(2)}
                     </p>
 
@@ -119,7 +119,7 @@ const Cart = () => {
                       </button>
                     </div>
 
-                    <p className="mt-2 text-sm text-gray-700">
+                    <p className="mt-2 text-sm text-gray-700 font-semibold">
                       Total: ₹{(product.price * product.quantity).toFixed(2)}
                     </p>
 
