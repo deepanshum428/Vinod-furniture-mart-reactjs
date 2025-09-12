@@ -10,7 +10,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
 import Products from "./components/Products/Products.jsx";
 import Login from "./pages/Login.jsx";
-import About from "./pages/about.jsx";
+import About from "./pages/About.jsx";
 import Signup from "./pages/Signup.jsx";
 import { MyContext } from "./context.js";
 import { useState } from "react";
