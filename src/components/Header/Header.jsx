@@ -200,7 +200,7 @@ const Header = () => {
               /> */}
               <SplitText
                 text="Vinod Furniture Mart"
-                className="font-serif font-bold  text-[#7B3F00] tracking-wide text-lg flex items-center text-center"
+                className="font-serif font-bold  text-[#7B3F00] tracking-wide text-md sm:text-lg flex items-center text-center"
                 delay={100}
                 duration={0.6}
                 ease="power3.out"
