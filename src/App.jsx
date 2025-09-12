@@ -48,7 +48,7 @@ const App = () => {
       >
         <RouterProvider router={router} />
       </MyContext.Provider>
-      <UseReducer />
+
       {/* <ScrollRestoration /> */}
     </>
   );
