@@ -190,10 +190,24 @@ const Header = () => {
             </button>
 
             <NavLink to="/" className="flex-1 text-center">
-              <img
+              {/* <img
                 src={logo}
                 alt="Vinod Furniture Logo"
                 className="h-8 mx-auto object-contain"
+              /> */}
+              <SplitText
+                text="Vinod Furniture Mart"
+                className="font-serif font-bold text-[#7B3F00] tracking-wide text-lg flex justify-center text-center"
+                delay={100}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                textAlign="center"
+                onLetterAnimationComplete={handleAnimationComplete}
               />
             </NavLink>
 
