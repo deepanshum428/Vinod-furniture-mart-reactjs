@@ -181,7 +181,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Header */}
-          <div className="md:hidden flex items-center justify-between w-full">
+          <div className="md:hidden flex items-center justify-between w-full text-center">
             <button
               className="text-[#a65a32] p-1"
               onClick={() => setMenuOpen(true)}
@@ -189,7 +189,10 @@ const Header = () => {
               <Menu className="w-6 h-6" />
             </button>
 
-            <NavLink to="/" className="flex-1 text-center">
+            <NavLink
+              to="/"
+              className="flex-1 text-center flex items-center justify-center"
+            >
               {/* <img
                 src={logo}
                 alt="Vinod Furniture Logo"
@@ -197,7 +200,7 @@ const Header = () => {
               /> */}
               <SplitText
                 text="Vinod Furniture Mart"
-                className="font-serif  text-[#7B3F00] tracking-wide text-lg flex align-center text-center"
+                className="font-serif font-bold  text-[#7B3F00] tracking-wide text-lg flex items-center text-center"
                 delay={100}
                 duration={0.6}
                 ease="power3.out"
