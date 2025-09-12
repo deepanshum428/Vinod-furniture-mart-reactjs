@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { EMPTY_CART } from "../../cart";
 import { useContext } from "react";
 import "./Header.css";
+import SplitText from "../ReactBits/SplitText";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,6 +41,10 @@ const Header = () => {
         navigate("/");
       }
     });
+  };
+
+  const handleAnimationComplete = () => {
+    console.log("All letters have animated!");
   };
 
   return (
@@ -106,10 +111,25 @@ const Header = () => {
             {/* Logo Center */}
             <div className="mx-8 w-full flex-1 text-center">
               <NavLink to="/" className="inline-block">
-                <img
+                {/* <img
                   src={logo}
                   alt="Vinod Furniture Logo"
                   className="h-10 mx-auto object-contain"
+                /> */}
+
+                <SplitText
+                  text="Vinod Furniture Mart"
+                  className="font-serif font-bold text-[#7B3F00] tracking-wide text-2xl"
+                  delay={100}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  textAlign="center"
+                  onLetterAnimationComplete={handleAnimationComplete}
                 />
               </NavLink>
             </div>
