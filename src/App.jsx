@@ -10,7 +10,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
 import Products from "./components/Products/Products.jsx";
 import Login from "./pages/Login.jsx";
-import About from "./pages/About.jsx";
+import About from "./pages/about.jsx";
 import Signup from "./pages/Signup.jsx";
 import { MyContext } from "./context.js";
 import { useState } from "react";
@@ -19,6 +19,9 @@ import { LOGGEDIN_USER } from "./user.js";
 import Contact from "./pages/Contact.jsx";
 import ProductDetail from "./components/ProductDetails/ProductDetail.jsx";
 import Cart from "./pages/Cart.jsx";
+import ThemeChanger from "./components/ThemeChanger/ThemeChanger.jsx";
+import Greeting from "./components/Greeting/Greeting.jsx";
+import { UseReducer } from "./components/UseReducer/UseReducer.jsx";
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
@@ -35,7 +38,9 @@ const App = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/themeChanger" element={<ThemeChanger />}></Route>
         <Route path="*" element={<ErrorPage />}></Route>
+        <Route path="/greet" element={<Greeting />}></Route>
       </Route>
     )
   );
@@ -47,6 +52,7 @@ const App = () => {
       >
         <RouterProvider router={router} />
       </MyContext.Provider>
+      <UseReducer />
       {/* <ScrollRestoration /> */}
     </>
   );

@@ -227,26 +227,19 @@ const Header = () => {
 
               {/* Navigation Links */}
               <nav className="space-y-1">
-                {["/", "/products", "/our-story", "/contact"].map(
-                  (path, idx) => {
-                    const names = [
-                      "Home",
-                      "Products",
-                      "Our Story",
-                      "Contact Us",
-                    ];
-                    return (
-                      <NavLink
-                        key={path}
-                        to={path}
-                        className="block py-3 px-4 rounded-lg hover:bg-white font-medium text-lg"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {names[idx]}
-                      </NavLink>
-                    );
-                  }
-                )}
+                {["/", "/products", "/about", "/contact"].map((path, idx) => {
+                  const names = ["Home", "Products", "Our Story", "Contact Us"];
+                  return (
+                    <NavLink
+                      key={path}
+                      to={path}
+                      className="block py-3 px-4 rounded-lg hover:bg-white font-medium text-lg"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {names[idx]}
+                    </NavLink>
+                  );
+                })}
               </nav>
 
               {/* Cart Link */}
