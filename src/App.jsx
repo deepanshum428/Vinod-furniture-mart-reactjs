@@ -19,8 +19,6 @@ import { LOGGEDIN_USER } from "./user.js";
 import Contact from "./pages/Contact.jsx";
 import ProductDetail from "./components/ProductDetails/ProductDetail.jsx";
 import Cart from "./pages/Cart.jsx";
-import Greeting from "./components/Greeting/Greeting.jsx";
-import { UseReducer } from "./components/UseReducer/UseReducer.jsx";
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
