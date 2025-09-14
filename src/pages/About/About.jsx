@@ -1,5 +1,6 @@
 import { FaLeaf, FaRulerCombined, FaMedal, FaSmile } from "react-icons/fa";
-import logoImg from "../assets/logo.png";
+import logoImg from "../../assets/logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function About() {
   return (
@@ -107,9 +108,15 @@ export default function About() {
             Join us in creating beautiful, functional spaces with furniture that
             stands the test of time.
           </p>
-          <button className="bg-[#a65a32] hover:bg-[#8b4729] text-white px-6 py-2 rounded-lg shadow-md transition">
+          {/* <button className="bg-[#a65a32] hover:bg-[#8b4729] text-white px-6 py-2 rounded-lg shadow-md transition">
             Get in Touch Today
-          </button>
+          </button> */}
+          <NavLink
+            to="/contact"
+            className="bg-[#a65a32] hover:bg-[#8b4729] text-white px-6 py-2 rounded-lg shadow-md transition"
+          >
+            Get in Touch Today
+          </NavLink>
         </div>
       </div>
     </div>

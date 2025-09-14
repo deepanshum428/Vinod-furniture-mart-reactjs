@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaSignInAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { MyContext } from "../context";
-import { saveUser } from "../user";
+import { MyContext } from "../../Context/context";
+import { saveUser } from "../../Services/user";
 
 function Login() {
   const { setLoggedInUser } = useContext(MyContext);

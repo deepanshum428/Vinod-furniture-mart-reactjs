@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { MyContext } from "../../context";
+import { MyContext } from "../../Context/context";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProducts } from "../../crud";
-import { saveCartProducts } from "../../cart";
+import { getProducts } from "../../Services/crud";
+import { saveCartProducts } from "../../Services/cart";
 import Swal from "sweetalert2";
 
 const ProductDetail = () => {

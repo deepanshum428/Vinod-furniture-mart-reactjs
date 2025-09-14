@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import { MyContext } from "../../context.ts";
-import { getProducts } from "../../crud.ts";
-import { saveCartProducts } from "../../cart.ts";
+import { MyContext } from "../../Context/context.ts";
+import { getProducts } from "../../Services/crud.ts";
+import { saveCartProducts } from "../../Services/cart.ts";
 
 export default function Products() {
   const { cart, setCart, loggedInUser } = useContext(MyContext);

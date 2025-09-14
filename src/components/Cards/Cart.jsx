@@ -1,8 +1,8 @@
-import { MyContext } from "../context";
+import { MyContext } from "../../Context/context";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import { saveCartProducts } from "../cart";
+import { saveCartProducts } from "../../Services/cart";
 
 const Cart = () => {
   const { cart, setCart, loggedInUser } = useContext(MyContext);
