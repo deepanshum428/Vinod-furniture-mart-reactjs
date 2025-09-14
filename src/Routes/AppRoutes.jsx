@@ -49,7 +49,6 @@ const AppRoutes = () => {
       >
         <RouterProvider router={router} />
       </MyContext.Provider>
-
       {/* <ScrollRestoration /> */}
     </>
   );
