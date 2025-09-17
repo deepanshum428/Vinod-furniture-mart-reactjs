@@ -25,6 +25,7 @@ function Login() {
     }
 
     setErrors(newErrors);
+    console.log(errors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -58,12 +59,12 @@ function Login() {
       saveUser(user);
       setLoggedInUser(user);
 
-      navigate("/products"); // Only runs if above line doesn't throw
+      navigate("/products");
       await Swal.fire({
         title: "Login Successful!",
         icon: "success",
         confirmButtonText: "Continue",
-        confirmButtonColor: "#4F46E5", // Indigo 600
+        confirmButtonColor: "#4F46E5",
       });
     } catch (error) {
       Swal.fire({
@@ -108,7 +109,7 @@ function Login() {
                 Email Address
               </label>
               <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="example@email.com"
                 value={formData.email}
