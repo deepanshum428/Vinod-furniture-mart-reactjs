@@ -133,7 +133,7 @@ function Login() {
               <input
                 type="password"
                 name="password"
-                placeholder="At least 6 characters"
+                placeholder="Enter password"
                 value={formData.password}
                 onChange={handleInputChange}
                 className={`mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${

@@ -164,7 +164,7 @@ function Signup() {
                 Email Address
               </label>
               <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="example@email.com"
                 value={signupFormData.email}
