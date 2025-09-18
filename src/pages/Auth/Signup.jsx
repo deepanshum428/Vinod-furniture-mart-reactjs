@@ -152,7 +152,7 @@ function Signup() {
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
 
-              {errors.name && (
+              {Boolean(errors.name) && (
                 <p className="text-red-500 text-sm mt-1">{errors.name}</p>
               )}
             </div>
@@ -174,7 +174,7 @@ function Signup() {
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
 
-              {errors.email && (
+              {Boolean(errors.email) && (
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
               )}
             </div>
@@ -196,7 +196,7 @@ function Signup() {
                 } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
 
-              {errors.password && (
+              {Boolean(errors.password) && (
                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
             </div>
