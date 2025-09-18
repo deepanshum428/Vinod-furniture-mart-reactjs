@@ -16,29 +16,36 @@ function Signup() {
     password: "",
   };
 
-  const [data, setData] = useState({ ...initialUserDetail });
+  const [signupFormData, setSignupFormData] = useState({
+    ...initialUserDetail,
+  });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
-    if (!data.name.trim()) {
+    const strongPassword =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const strongEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!signupFormData.name.trim()) {
       newErrors.name = "Full name is required";
-    } else if (data.name.length < 3) {
+    } else if (signupFormData.name.length < 3) {
       newErrors.name = "Name must be at least 3 characters";
     }
 
-    if (!data.email.trim()) {
+    if (!signupFormData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    } else if (!strongEmail.test(signupFormData.email)) {
       newErrors.email = "Enter a valid email";
     }
 
-    if (!data.password) {
+    if (!signupFormData.password) {
       newErrors.password = "Password is required";
-    } else if (data.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+    } else if (!strongPassword.test(signupFormData.password)) {
+      newErrors.password =
+        "Password must be 8+ chars with uppercase, number & symbol";
     }
 
     setErrors(newErrors);
@@ -47,7 +54,7 @@ function Signup() {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
+    setSignupFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -63,7 +70,7 @@ function Signup() {
 
     try {
       const users = JSON.parse(localStorage.getItem("users") || "[]");
-      const exists = users.some((user) => user.email === data.email);
+      const exists = users.some((user) => user.email === signupFormData.email);
       if (exists) {
         Swal.fire({
           title: "Email Already Registered",
@@ -74,7 +81,7 @@ function Signup() {
         return;
       }
 
-      const newUsers = [...users, data];
+      const newUsers = [...users, signupFormData];
       localStorage.setItem("users", JSON.stringify(newUsers));
 
       await Swal.fire({
@@ -138,7 +145,7 @@ function Signup() {
                 type="text"
                 name="name"
                 placeholder="John Doe"
-                value={data.name}
+                value={signupFormData.name}
                 onChange={handleInput}
                 className={`px-4 py-2 w-full border rounded-md ${
                   errors.name ? "border-red-500" : "border-gray-300"
@@ -160,7 +167,7 @@ function Signup() {
                 type="email"
                 name="email"
                 placeholder="example@email.com"
-                value={data.email}
+                value={signupFormData.email}
                 onChange={handleInput}
                 className={`px-4 py-2 w-full border rounded-md ${
                   errors.email ? "border-red-500" : "border-gray-300"
@@ -181,8 +188,8 @@ function Signup() {
               <input
                 type="password"
                 name="password"
-                placeholder="At least 6 characters"
-                value={data.password}
+                placeholder="Create strong password (8+, A-Z, 0-9, @#$)"
+                value={signupFormData.password}
                 onChange={handleInput}
                 className={`px-4 py-2 w-full border rounded-md ${
                   errors.password ? "border-red-500" : "border-gray-300"
