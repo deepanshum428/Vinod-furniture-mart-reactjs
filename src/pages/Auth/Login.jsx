@@ -1,6 +1,12 @@
 import React, { useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FaEnvelope, FaLock, FaSignInAlt } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaEye,
+  FaEyeSlash,
+  FaLock,
+  FaSignInAlt,
+} from "react-icons/fa";
 import Swal from "sweetalert2";
 import { MyContext } from "../../Context/context";
 import { saveUser } from "../../Services/user";
@@ -12,6 +18,7 @@ function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -130,21 +137,43 @@ function Login() {
                 <FaLock />
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className={`mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-                  errors.password
-                    ? "border-red-500"
-                    : "border-gray-300 focus:ring-indigo-500"
-                }`}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className={`mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                    errors.password
+                      ? "border-red-500"
+                      : "border-gray-300 focus:ring-indigo-500"
+                  }`}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a65a32] hover:text-amber-700 cursor-pointer"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
+            </div>
+
+            <div className="flex justify-between">
+              <div>
+                <input type="checkbox" name="remember" className="" />
+                <label htmlFor="checkbox" className="text-[#a65a32] gap-2">
+                  Remember me
+                </label>
+              </div>
+              <div>
+                <NavLink to="/forgot-password" className="text-indigo-600">
+                  forgot password?
+                </NavLink>
+              </div>
             </div>
 
             <button

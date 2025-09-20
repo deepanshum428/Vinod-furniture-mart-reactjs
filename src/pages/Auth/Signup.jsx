@@ -7,6 +7,8 @@ import {
   FaLock,
   FaArrowRight,
   FaSignOutAlt,
+  FaEyeSlash,
+  FaEye,
 } from "react-icons/fa";
 
 function Signup() {
@@ -21,6 +23,7 @@ function Signup() {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -185,17 +188,24 @@ function Signup() {
                 <FaLock />
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Create strong password (8+, A-Z, 0-9, @#$)"
-                value={signupFormData.password}
-                onChange={handleInput}
-                className={`px-4 py-2 w-full border rounded-md ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              />
-
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Create strong password (8+, A-Z, 0-9, @#$)"
+                  value={signupFormData.password}
+                  onChange={handleInput}
+                  className={`px-4 py-2 w-full border rounded-md ${
+                    errors.password ? "border-red-500" : "border-gray-300"
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 flex justify-center text-[#a65a32] hover:text-amber-700 cursor-pointer "
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
               {Boolean(errors.password) && (
                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
