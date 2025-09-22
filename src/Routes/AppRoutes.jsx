@@ -20,6 +20,7 @@ import Contact from "../pages/Contact/Contact.jsx";
 import ProductDetail from "../components/ProductDetails/ProductDetail.jsx";
 import Cart from "../components/Cards/Cart.jsx";
 import ROUTES from "./Paths.jsx";
+import ForgotPassword from "../pages/Auth/ForgotPassword.jsx";
 
 const AppRoutes = () => {
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
@@ -34,6 +35,10 @@ const AppRoutes = () => {
         <Route path={ROUTES.ABOUT} element={<About />}></Route>
         <Route path={ROUTES.CONTACT} element={<Contact />}></Route>
         <Route path={ROUTES.LOGIN} element={<Login />}></Route>
+        <Route
+          path={ROUTES.FORGOTPASSWORD}
+          element={<ForgotPassword />}
+        ></Route>
         <Route path={ROUTES.SIGNUP} element={<Signup />}></Route>
         <Route path={ROUTES.CART} element={<Cart />}></Route>
 

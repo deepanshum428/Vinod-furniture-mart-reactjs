@@ -7,6 +7,7 @@ const ROUTES = {
   LOGIN: "/login",
   SIGNUP: "/signup",
   CART: "/cart",
+  FORGOTPASSWORD: "/forgot-password",
 };
 
 export default ROUTES;
