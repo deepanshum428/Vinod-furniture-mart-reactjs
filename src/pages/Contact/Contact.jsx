@@ -10,14 +10,53 @@ function Contact() {
   };
 
   const [data, setData] = useState(initialState);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const mobileNo = /^(?:\+91|91)?[6-9]\d{9}$/;
+    const strongEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!data.name.trim()) {
+      newErrors.name = "Full name is required";
+    } else if (data.name.length < 3) {
+      newErrors.name = "Name must be at least 3 characters";
+    }
+
+    if (!data.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!strongEmail.test(data.email)) {
+      newErrors.email = "Enter a valid email";
+    }
+
+    if (!data.contact_number) {
+      newErrors.contact_number = "contact_number is required";
+    } else if (!mobileNo.test(data.contact_number)) {
+      newErrors.contact_number =
+        "Please enter a valid indian 10-digit mobile number";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    if (!validateForm()) {
+      setIsSubmitting(false);
+      return;
+    }
 
     const { name, email, contact_number } = data;
 
@@ -43,6 +82,7 @@ function Contact() {
 
     e.target.reset();
     setData(initialState);
+    setIsSubmitting(false);
   };
 
   return (
@@ -81,8 +121,10 @@ function Contact() {
                 value={data.name}
                 onChange={handleInput}
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
-                required
               />
+              {Boolean(errors.name) && (
+                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+              )}
             </div>
 
             <div>
@@ -91,14 +133,16 @@ function Contact() {
                 Email
               </label>
               <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Enter your email"
                 value={data.email}
                 onChange={handleInput}
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
-                required
               />
+              {Boolean(errors.email) && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
 
             <div>
@@ -113,15 +157,20 @@ function Contact() {
                 value={data.contact_number}
                 onChange={handleInput}
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
-                required
               />
+              {Boolean(errors.contact_number) && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.contact_number}
+                </p>
+              )}
             </div>
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="w-full bg-[#a65a32] hover:bg-[#8a4b2b] text-white py-2 rounded-md flex items-center justify-center gap-2 transition-transform hover:scale-102 duration-200 outline-none active:scale-98"
             >
-              Submit <FaPaperPlane />
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>
