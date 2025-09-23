@@ -37,7 +37,7 @@ function Faq() {
   };
 
   return (
-    <section className="max-w-3xl mx-auto px-4 py-10 mt-20">
+    <section className="max-w-3xl mx-auto px-4 py-10 mt-14">
       <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Frequently Asked Questions
       </h1>
