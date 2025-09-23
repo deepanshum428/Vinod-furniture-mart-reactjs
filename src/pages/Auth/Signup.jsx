@@ -192,10 +192,10 @@ function Signup() {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Create strong password (8+, A-Z, 0-9, @#$)"
+                  placeholder="Create strong password"
                   value={signupFormData.password}
                   onChange={handleInput}
-                  className={`px-4 py-2 w-full border rounded-md ${
+                  className={`px-4 py-2 w-full border text-wrap rounded-md ${
                     errors.password ? "border-red-500" : "border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
@@ -209,6 +209,29 @@ function Signup() {
               {Boolean(errors.password) && (
                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
               )}
+            </div>
+
+            <div className="gap-2 text-xs flex justify-center">
+              <div className="flex justify-center">
+                <input type="checkbox" name="remember" className="" />
+              </div>
+              <div>
+                <label htmlFor="remember" className="text-[#a65a32] ">
+                  By clicking "Create Account" you agree to our Terms and
+                  Conditions and Privacy Policy.
+                </label>
+              </div>
+            </div>
+            <div className="gap-2 text-xs flex justify-center">
+              <div className="flex justify-center">
+                <input type="checkbox" name="remember" className="" />
+              </div>
+              <div>
+                <label htmlFor="remember" className="text-[#a65a32] ">
+                  I would like to be kept in the loop with the latest member
+                  offers, news, and handy tips from vinod furniture mart.
+                </label>
+              </div>
             </div>
 
             {/* Submit Button */}

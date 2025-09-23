@@ -39,7 +39,7 @@ function Contact() {
     }
 
     if (!data.contact_number) {
-      newErrors.contact_number = "contact_number is required";
+      newErrors.contact_number = "Contact no. is required";
     } else if (!mobileNo.test(data.contact_number)) {
       newErrors.contact_number =
         "Please enter a valid indian 10-digit mobile number";
@@ -120,7 +120,9 @@ function Contact() {
                 placeholder="Enter your name"
                 value={data.name}
                 onChange={handleInput}
-                className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
+                className={`px-4 py-2 w-full border rounded-md ${
+                  errors.name ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
               {Boolean(errors.name) && (
                 <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -138,7 +140,9 @@ function Contact() {
                 placeholder="Enter your email"
                 value={data.email}
                 onChange={handleInput}
-                className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
+                className={`px-4 py-2 w-full border rounded-md ${
+                  errors.name ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
               {Boolean(errors.email) && (
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -156,7 +160,9 @@ function Contact() {
                 placeholder="Enter your phone number"
                 value={data.contact_number}
                 onChange={handleInput}
-                className="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 border-gray-300 focus:ring-[#a65a32]"
+                className={`px-4 py-2 w-full border rounded-md ${
+                  errors.name ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
               {Boolean(errors.contact_number) && (
                 <p className="text-red-500 text-sm mt-1">

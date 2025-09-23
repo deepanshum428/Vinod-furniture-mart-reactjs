@@ -165,7 +165,7 @@ function Login() {
             <div className="flex justify-between">
               <div>
                 <input type="checkbox" name="remember" className="" />
-                <label htmlFor="checkbox" className="text-[#a65a32] gap-2">
+                <label htmlFor="remember" className="text-[#a65a32] gap-2">
                   Remember me
                 </label>
               </div>

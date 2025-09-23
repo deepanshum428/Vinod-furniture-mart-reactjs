@@ -21,6 +21,7 @@ import ProductDetail from "../components/ProductDetails/ProductDetail.jsx";
 import Cart from "../components/Cards/Cart.jsx";
 import ROUTES from "./Paths.jsx";
 import ForgotPassword from "../pages/Auth/ForgotPassword.jsx";
+import Faq from "../pages/Faq/Faq.jsx";
 
 const AppRoutes = () => {
   const [loggedInUser, setLoggedInUser] = useState(LOGGEDIN_USER);
@@ -41,6 +42,7 @@ const AppRoutes = () => {
         ></Route>
         <Route path={ROUTES.SIGNUP} element={<Signup />}></Route>
         <Route path={ROUTES.CART} element={<Cart />}></Route>
+        <Route path={ROUTES.FAQ} element={<Faq />}></Route>
 
         <Route path="*" element={<ErrorPage />}></Route>
       </Route>
