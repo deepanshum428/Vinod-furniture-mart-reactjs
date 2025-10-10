@@ -78,10 +78,10 @@ const BestSellerSection = () => {
               <div className="flex items-center justify-between text-sm mt-1">
                 <div className="gap-8">
                   <span className="line-through mr-2  text-gray-400">
-                    {item.originalPrice}
+                    {item.price}
                   </span>
                   <span className="text-[#b44b2a] font-medium">
-                    {item.price}
+                    {item.originalPrice}
                   </span>
                 </div>
                 <div className=" flex justify-items-end cursor-pointer ">
