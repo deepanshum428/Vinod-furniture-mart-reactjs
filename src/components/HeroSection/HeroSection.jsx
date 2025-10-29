@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       {/* Main Content */}
       <div className="absolute z-10 bottom-8 left-8 right-[160px] max-w-xl text-white space-y-4">
-        <h1 className="text-3xl md:text-5xl font-bold">The Diwali Sale</h1>
+        <h1 className="text-3xl md:text-5xl font-bold">The Winter Sale</h1>
         <p className="text-base md:text-lg">
           Discover comfort that adapts to your lifestyle. Thoughtfully crafted
           designs, built to elevate your everyday space.
