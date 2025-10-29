@@ -1,8 +1,6 @@
-import React from "react";
 import bed from "../../assets/bed1.jpg";
 import dainingTable1 from "../../assets/dainingTable1.avif";
 import dainingTable2 from "../../assets/dainingTable2.jpg";
-import ErrorPage from "../../pages/ErrorPage";
 import { NavLink } from "react-router-dom";
 
 const bestsellers = [
